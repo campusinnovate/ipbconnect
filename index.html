@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPB Connect | Platform Alumni Resmi IPB University</title>
+<meta name="description" content="IPB Connect — ekosistem digital yang menghubungkan alumni, mahasiswa, dan civitas akademika IPB University untuk berkembang dan memberi dampak nyata.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0A1B4D;
+    --navy:#0D2875;
+    --navy-700:#123893;
+    --blue:#1656B6;
+    --blue-100:#E8EFFC;
+    --gold:#FFC107;
+    --gold-dark:#E8A800;
+    --bg:#F0F2F6;
+    --white:#FFFFFF;
+    --ink:#0A1B4D;
+    --muted:#5B6B8C;
+    --muted-2:#8A96B3;
+    --border:#E1E6F2;
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:24px;
+    --shadow-sm:0 2px 10px rgba(13,40,117,0.06);
+    --shadow-md:0 12px 32px rgba(13,40,117,0.10);
+    --shadow-lg:0 24px 60px rgba(13,40,117,0.16);
+    --container:1240px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Plus Jakarta Sans',sans-serif;
+    margin:0;
+    line-height:1.15;
+    letter-spacing:-0.01em;
+    color:var(--navy-900);
+  }
+  p{margin:0;color:var(--muted);line-height:1.7;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;}
+  .container{max-width:var(--container);margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--blue-100);color:var(--blue);
+    font-weight:700;font-size:13px;letter-spacing:0.02em;
+    padding:8px 16px;border-radius:999px;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+  .section{padding:96px 0;}
+  .section-head{max-width:640px;margin:0 0 56px;}
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head h2{font-size:clamp(28px,3.4vw,42px);font-weight:800;}
+  .section-head h2 .accent{color:var(--blue);}
+  .section-head p{margin-top:14px;font-size:16.5px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:15px;
+    padding:15px 28px;border-radius:12px;border:1.5px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    white-space:nowrap;
+  }
+  .btn svg{width:18px;height:18px;flex-shrink:0;}
+  .btn-gold{background:var(--gold);color:var(--navy-900);box-shadow:0 10px 24px rgba(255,193,7,0.35);}
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 30px rgba(255,193,7,0.45);}
+  .btn-ghost{background:transparent;color:var(--white);border-color:rgba(255,255,255,0.35);}
+  .btn-ghost:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.6);}
+  .btn-outline-navy{background:transparent;color:var(--navy);border-color:var(--border);}
+  .btn-outline-navy:hover{border-color:var(--blue);color:var(--blue);}
+  .btn-navy{background:var(--navy);color:var(--white);}
+  .btn-navy:hover{background:var(--navy-700);transform:translateY(-2px);}
+  .btn-sm{padding:10px 18px;font-size:13.5px;border-radius:9px;}
+
+  /* ===== decorative leaf watermark ===== */
+  .leaf-wm{position:absolute;opacity:0.05;pointer-events:none;z-index:0;}
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(255,255,255,0.88);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;height:82px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{
+    width:44px;height:44px;border-radius:12px;
+    background:linear-gradient(145deg,var(--navy),var(--blue));
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .brand-mark svg{width:24px;height:24px;color:var(--gold);}
+  .brand-text{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-text .name{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:19px;color:var(--navy-900);}
+  .brand-text .tag{font-size:11.5px;color:var(--muted-2);font-weight:600;letter-spacing:0.02em;}
+  .nav-links{display:flex;align-items:center;gap:38px;}
+  .nav-links a{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14.5px;
+    color:var(--navy-900);position:relative;padding:6px 0;
+    transition:color .18s ease;
+  }
+  .nav-links a:hover{color:var(--blue);}
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--gold);
+    transition:width .2s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-actions{display:flex;align-items:center;gap:12px;}
+  .nav-actions .btn-outline-navy{padding:11px 22px;}
+  .nav-actions .btn-gold{padding:11px 24px;}
+  .nav-toggle{display:none;background:none;border:none;padding:8px;color:var(--navy-900);}
+  .nav-toggle svg{width:26px;height:26px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:linear-gradient(180deg,#FBFCFE 0%,var(--bg) 100%);
+    padding:76px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:56px;align-items:center;
+    position:relative;z-index:2;
+  }
+  .hero-copy h1{font-size:clamp(36px,4.6vw,56px);font-weight:800;margin-top:22px;}
+  .hero-copy h1 .accent{
+    background:linear-gradient(90deg,var(--blue),var(--navy));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero-copy p.lede{font-size:17.5px;margin-top:20px;max-width:520px;}
+  .hero-actions{display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;}
+  .hero-actions .btn-ghost{background:var(--navy);color:var(--white);border-color:var(--navy);}
+  .hero-actions .btn-ghost:hover{background:var(--navy-700);}
+
+  .hero-stats{display:flex;gap:0;margin-top:52px;border-top:1px solid var(--border);padding-top:32px;max-width:560px;}
+  .hero-stat{flex:1;padding-right:24px;}
+  .hero-stat .num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30px;color:var(--navy-900);}
+  .hero-stat .num .plus{color:var(--gold-dark);}
+  .hero-stat .label{font-size:13px;color:var(--muted);margin-top:4px;max-width:150px;}
+
+  /* hero visual mockup */
+  .hero-visual{position:relative;height:560px;}
+  .device-card{
+    position:absolute;top:0;left:0;width:88%;
+    background:var(--white);border-radius:20px;box-shadow:var(--shadow-lg);
+    border:1px solid var(--border);overflow:hidden;
+  }
+  .device-topbar{display:flex;align-items:center;gap:6px;padding:14px 18px;border-bottom:1px solid var(--border);}
+  .device-topbar span{width:9px;height:9px;border-radius:50%;background:var(--border);}
+  .device-hero-banner{
+    margin:18px;border-radius:14px;
+    background:linear-gradient(120deg,var(--navy) 0%,var(--blue) 100%);
+    padding:22px;color:#fff;position:relative;overflow:hidden;
+  }
+  .device-hero-banner::after{
+    content:'';position:absolute;right:-30px;top:-30px;width:140px;height:140px;border-radius:50%;
+    background:rgba(255,193,7,0.18);
+  }
+  .device-hero-banner .t1{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:16px;}
+  .device-hero-banner .t2{font-size:12px;opacity:0.8;margin-top:6px;max-width:220px;}
+  .device-chip-row{display:flex;gap:10px;padding:0 18px 18px;}
+  .device-chip{
+    flex:1;background:var(--bg);border-radius:10px;padding:12px 10px;text-align:center;
+  }
+  .device-chip svg{width:18px;height:18px;color:var(--blue);margin:0 auto 6px;}
+  .device-chip span{display:block;font-size:10.5px;font-weight:600;color:var(--navy-900);font-family:'Plus Jakarta Sans',sans-serif;}
+  .device-list{padding:0 18px 20px;display:flex;flex-direction:column;gap:10px;}
+  .device-row{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;}
+  .device-row .avatar{width:34px;height:34px;border-radius:9px;flex-shrink:0;}
+  .device-row .lines{flex:1;}
+  .device-row .lines .l1{height:8px;width:70%;background:#DCE3F5;border-radius:4px;}
+  .device-row .lines .l2{height:6px;width:45%;background:#EEF1F9;border-radius:4px;margin-top:6px;}
+  .device-row .badge{width:22px;height:22px;border-radius:6px;background:var(--blue-100);flex-shrink:0;}
+
+  .phone-card{
+    position:absolute;bottom:-8px;right:-10px;width:230px;
+    background:var(--navy-900);border-radius:34px;padding:12px;box-shadow:var(--shadow-lg);
+    border:6px solid var(--navy-900);
+  }
+  .phone-screen{background:var(--white);border-radius:22px;overflow:hidden;}
+  .phone-status{display:flex;justify-content:space-between;padding:12px 16px 4px;font-size:10px;font-weight:700;color:var(--navy-900);}
+  .phone-app-top{
+    background:linear-gradient(120deg,var(--blue),var(--navy));
+    margin:10px;border-radius:14px;padding:16px;color:#fff;
+  }
+  .phone-app-top .p1{font-size:9px;opacity:0.75;}
+  .phone-app-top .p2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;margin-top:6px;}
+  .phone-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:0 10px 14px;}
+  .phone-icon{background:var(--bg);border-radius:10px;padding:10px 4px;text-align:center;}
+  .phone-icon svg{width:16px;height:16px;color:var(--blue);}
+
+  .float-badge{
+    position:absolute;background:var(--white);border-radius:14px;box-shadow:var(--shadow-md);
+    padding:12px 16px;display:flex;align-items:center;gap:10px;border:1px solid var(--border);
+    animation:float 5s ease-in-out infinite;
+  }
+  .float-badge.b1{top:28%;left:-6%;animation-delay:0s;}
+  .float-badge.b2{bottom:20%;left:2%;animation-delay:1.4s;}
+  .float-badge svg{width:20px;height:20px;color:var(--gold-dark);flex-shrink:0;}
+  .float-badge .ft{font-size:11px;color:var(--muted);}
+  .float-badge .fv{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:14px;color:var(--navy-900);}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+
+  .hero-wave{display:block;width:100%;margin-top:64px;}
+
+  /* ===== LOGO / TRUST STRIP ===== */
+  .trust-strip{padding:34px 0;border-bottom:1px solid var(--border);}
+  .trust-strip .container{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:space-between;}
+  .trust-strip .label{font-size:12.5px;font-weight:700;color:var(--muted-2);letter-spacing:0.04em;text-transform:uppercase;white-space:nowrap;}
+  .trust-logos{display:flex;gap:36px;flex-wrap:wrap;align-items:center;}
+  .trust-logos span{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;color:var(--muted-2);font-size:15px;opacity:0.7;}
+
+  /* ===== ABOUT ===== */
+  .about{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:center;}
+  .about-visual{position:relative;}
+  .about-panel{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 60%, var(--blue) 100%);
+    border-radius:var(--radius-lg);padding:44px;color:#fff;position:relative;overflow:hidden;min-height:380px;
+    display:flex;flex-direction:column;justify-content:center;gap:22px;
+  }
+  .about-panel::before{
+    content:'';position:absolute;width:260px;height:260px;border-radius:50%;
+    background:rgba(255,193,7,0.14);top:-90px;right:-90px;
+  }
+  .about-panel .quote{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:22px;line-height:1.5;position:relative;z-index:1;}
+  .about-panel .quote .hl{color:var(--gold);}
+  .about-mini-stats{display:flex;gap:28px;position:relative;z-index:1;margin-top:6px;}
+  .about-mini-stats div .n{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;}
+  .about-mini-stats div .l{font-size:11.5px;opacity:0.75;margin-top:2px;}
+  .about-copy .feature-line{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--border);}
+  .about-copy .feature-line:last-child{border-bottom:none;}
+  .about-copy .feature-line .ic{
+    width:44px;height:44px;border-radius:12px;background:var(--blue-100);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .about-copy .feature-line .ic svg{width:22px;height:22px;}
+  .about-copy .feature-line h4{font-size:16px;font-weight:700;}
+  .about-copy .feature-line p{font-size:14px;margin-top:4px;}
+
+  /* ===== ECOSYSTEM (signature orbit) ===== */
+  .ecosystem{background:linear-gradient(180deg,var(--white),var(--bg));position:relative;}
+  .orbit-wrap{position:relative;width:100%;max-width:640px;height:640px;margin:0 auto;}
+  .orbit-ring{position:absolute;top:50%;left:50%;border:1.5px dashed #C9D3EC;border-radius:50%;transform:translate(-50%,-50%);}
+  .orbit-ring.r1{width:520px;height:520px;}
+  .orbit-center{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:150px;height:150px;border-radius:50%;
+    background:linear-gradient(150deg,var(--navy),var(--blue));
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;
+    box-shadow:0 20px 50px rgba(13,40,117,0.35);z-index:3;color:#fff;text-align:center;
+  }
+  .orbit-center svg{width:34px;height:34px;color:var(--gold);}
+  .orbit-center span{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13px;}
+  .orbit-node{
+    position:absolute;top:50%;left:50%;width:128px;margin-top:-58px;margin-left:-64px;
+    background:#fff;border-radius:16px;padding:16px 12px;text-align:center;
+    box-shadow:var(--shadow-md);border:1px solid var(--border);z-index:2;
+    transition:transform .25s ease, box-shadow .25s ease;
+    transform:rotate(var(--angle)) translate(240px) rotate(calc(-1 * var(--angle)));
+  }
+  .orbit-node:hover{box-shadow:var(--shadow-lg);transform:var(--hover-transform);}
+  .orbit-node .ic{
+    width:38px;height:38px;border-radius:10px;background:var(--blue-100);color:var(--blue);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 10px;
+  }
+  .orbit-node .ic svg{width:19px;height:19px;}
+  .orbit-node h5{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:12.5px;color:var(--navy-900);}
+  .orbit-node p{font-size:10.5px;margin-top:4px;line-height:1.4;color:var(--muted-2);}
+
+  .ecosystem-grid-mobile{display:none;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .eco-card-m{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow-sm);}
+  .eco-card-m .ic{width:36px;height:36px;border-radius:9px;background:var(--blue-100);color:var(--blue);display:flex;align-items:center;justify-content:center;margin-bottom:10px;}
+  .eco-card-m .ic svg{width:18px;height:18px;}
+  .eco-card-m h5{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13.5px;}
+  .eco-card-m p{font-size:11.5px;margin-top:5px;}
+
+  /* ===== PROGRAMS ===== */
+  .programs{background:var(--white);}
+  .section-head-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;gap:24px;flex-wrap:wrap;}
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;}
+  .tab{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13.5px;
+    padding:10px 18px;border-radius:999px;border:1px solid var(--border);color:var(--muted);
+    display:flex;align-items:center;gap:6px;
+  }
+  .tab.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+  .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .event-card{
+    border-radius:var(--radius-md);overflow:hidden;border:1px solid var(--border);
+    background:#fff;box-shadow:var(--shadow-sm);transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .event-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+  .event-thumb{
+    height:150px;position:relative;display:flex;align-items:flex-end;padding:16px;
+  }
+  .event-thumb.c1{background:linear-gradient(135deg,#1656B6,#0D2875);}
+  .event-thumb.c2{background:linear-gradient(135deg,#2E7D5B,#134731);}
+  .event-thumb.c3{background:linear-gradient(135deg,#C97A1F,#7A4A0F);}
+  .event-tag{
+    background:rgba(255,255,255,0.16);backdrop-filter:blur(6px);color:#fff;font-size:10.5px;font-weight:700;
+    padding:5px 12px;border-radius:999px;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:0.03em;
+    position:absolute;top:14px;left:16px;
+  }
+  .event-thumb svg{width:44px;height:44px;color:rgba(255,255,255,0.35);position:absolute;right:16px;bottom:14px;}
+  .event-body{padding:20px;}
+  .event-body h4{font-size:16px;font-weight:700;line-height:1.4;}
+  .event-meta{display:flex;flex-direction:column;gap:6px;margin-top:12px;}
+  .event-meta .row{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted);}
+  .event-meta .row svg{width:14px;height:14px;color:var(--muted-2);flex-shrink:0;}
+  .event-footer{display:flex;justify-content:space-between;align-items:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+  .event-footer .attendees{font-size:12px;color:var(--muted-2);display:flex;align-items:center;gap:6px;}
+  .event-footer .attendees svg{width:14px;height:14px;}
+  .link-arrow{display:inline-flex;align-items:center;gap:6px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;color:var(--blue);}
+  .link-arrow svg{width:16px;height:16px;transition:transform .2s ease;}
+  .link-arrow:hover svg{transform:translateX(3px);}
+
+  /* ===== ALUMNI PROMINENT ===== */
+  .alumni{background:var(--bg);}
+  .alumni-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .alumni-card{
+    background:#fff;border-radius:var(--radius-md);padding:26px 20px;text-align:center;
+    border:1px solid var(--border);box-shadow:var(--shadow-sm);transition:transform .2s ease;
+  }
+  .alumni-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);}
+  .alumni-avatar{
+    width:76px;height:76px;border-radius:50%;margin:0 auto 16px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:#fff;
+  }
+  .alumni-card h4{font-size:15px;font-weight:700;}
+  .alumni-card .role{font-size:12.5px;color:var(--muted);margin-top:6px;min-height:32px;}
+  .alumni-card .batch{
+    display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:var(--blue);
+    background:var(--blue-100);padding:5px 12px;border-radius:999px;font-family:'Plus Jakarta Sans',sans-serif;
+  }
+
+  /* ===== BENEFITS STRIP ===== */
+  .benefits{background:var(--navy-900);position:relative;overflow:hidden;}
+  .benefits::before{
+    content:'';position:absolute;top:-120px;right:-120px;width:360px;height:360px;border-radius:50%;
+    background:rgba(255,193,7,0.08);
+  }
+  .benefits-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;z-index:1;}
+  .benefit-item{padding:0 20px;border-right:1px solid rgba(255,255,255,0.1);text-align:center;}
+  .benefit-item:last-child{border-right:none;}
+  .benefit-item .ic{
+    width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.08);
+    display:flex;align-items:center;justify-content:center;margin:0 auto 16px;color:var(--gold);
+  }
+  .benefit-item .ic svg{width:24px;height:24px;}
+  .benefit-item h5{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14.5px;color:#fff;}
+  .benefit-item p{font-size:12px;margin-top:8px;color:rgba(255,255,255,0.55);}
+
+  /* ===== APP CTA ===== */
+  .app-cta{background:linear-gradient(120deg,var(--blue) 0%, var(--navy) 100%);position:relative;overflow:hidden;}
+  .app-cta::before{content:'';position:absolute;left:-100px;bottom:-140px;width:360px;height:360px;border-radius:50%;background:rgba(255,255,255,0.06);}
+  .app-cta::after{content:'';position:absolute;right:8%;top:-60px;width:180px;height:180px;border-radius:50%;background:rgba(255,193,7,0.15);}
+  .app-cta-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;position:relative;z-index:1;}
+  .app-cta h2{color:#fff;font-size:clamp(26px,3vw,38px);font-weight:800;}
+  .app-cta p{color:rgba(255,255,255,0.78);margin-top:14px;max-width:440px;font-size:16px;}
+  .store-badges{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+  .store-badge{
+    display:flex;align-items:center;gap:10px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.25);
+    border-radius:12px;padding:11px 20px;color:#fff;backdrop-filter:blur(4px);
+  }
+  .store-badge svg{width:24px;height:24px;}
+  .store-badge .s1{font-size:9.5px;opacity:0.8;display:block;}
+  .store-badge .s2{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;}
+  .app-cta-visual{display:flex;justify-content:center;position:relative;}
+  .app-cta-visual .phone-card{position:static;width:220px;}
+
+  /* ===== FOOTER ===== */
+  footer{background:#08133C;color:rgba(255,255,255,0.65);padding:76px 0 0;}
+  .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:48px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,0.08);}
+  .footer-brand .brand-text .name{color:#fff;}
+  .footer-brand p{margin-top:16px;font-size:14px;line-height:1.7;max-width:300px;color:rgba(255,255,255,0.55);}
+  .footer-social{display:flex;gap:10px;margin-top:22px;}
+  .footer-social a{
+    width:38px;height:38px;border-radius:10px;background:rgba(255,255,255,0.08);
+    display:flex;align-items:center;justify-content:center;transition:background .2s ease;
+  }
+  .footer-social a:hover{background:var(--blue);}
+  .footer-social svg{width:17px;height:17px;color:#fff;}
+  .footer-col h5{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14.5px;color:#fff;margin-bottom:20px;}
+  .footer-col ul li{margin-bottom:13px;}
+  .footer-col ul li a{font-size:14px;color:rgba(255,255,255,0.6);transition:color .2s ease;}
+  .footer-col ul li a:hover{color:var(--gold);}
+  .footer-contact li{display:flex;gap:12px;margin-bottom:16px;font-size:13.5px;color:rgba(255,255,255,0.6);}
+  .footer-contact li svg{width:17px;height:17px;color:var(--gold);flex-shrink:0;margin-top:2px;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:26px 0;font-size:13px;color:rgba(255,255,255,0.4);flex-wrap:wrap;gap:10px;}
+  .footer-bottom a{color:rgba(255,255,255,0.55);}
+
+  /* ===== reveal animation ===== */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1;transform:none;transition:none;}
+    .float-badge{animation:none;}
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:1024px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{height:460px;max-width:460px;margin:0 auto;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{order:2;}
+    .card-grid{grid-template-columns:repeat(2,1fr);}
+    .alumni-grid{grid-template-columns:repeat(2,1fr);}
+    .benefits-grid{grid-template-columns:repeat(3,1fr);row-gap:36px;}
+    .benefit-item:nth-child(3){border-right:none;}
+    .app-cta-grid{grid-template-columns:1fr;}
+    .app-cta-visual{display:none;}
+    .footer-grid{grid-template-columns:1fr 1fr;row-gap:40px;}
+  }
+  @media (max-width:860px){
+    .nav-links, .nav-actions{display:none;}
+    .nav-toggle{display:flex;}
+    .orbit-wrap{display:none;}
+    .ecosystem-grid-mobile{display:grid;}
+  }
+  @media (max-width:640px){
+    .container{padding:0 20px;}
+    .section{padding:64px 0;}
+    .hero{padding-top:24px;}
+    .hero-stats{flex-direction:column;gap:18px;}
+    .hero-stat{padding-right:0;}
+    .card-grid{grid-template-columns:1fr;}
+    .alumni-grid{grid-template-columns:1fr 1fr;}
+    .benefits-grid{grid-template-columns:1fr 1fr;}
+    .benefit-item{border-right:none !important;margin-bottom:12px;}
+    .footer-grid{grid-template-columns:1fr;}
+    .trust-strip .container{flex-direction:column;align-items:flex-start;gap:18px;}
+    .phone-card{width:170px;right:0;}
+    .float-badge{padding:9px 12px;}
+    .float-badge .fv{font-size:12px;}
+  }
+
+  /* ===== mobile nav panel ===== */
+  .mobile-panel{
+    position:fixed;inset:0;background:var(--navy-900);z-index:200;
+    transform:translateX(100%);transition:transform .3s ease;
+    display:flex;flex-direction:column;padding:28px 28px 40px;
+  }
+  .mobile-panel.open{transform:translateX(0);}
+  .mobile-panel-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px;}
+  .mobile-panel .close-btn{background:rgba(255,255,255,0.1);border:none;width:40px;height:40px;border-radius:10px;color:#fff;display:flex;align-items:center;justify-content:center;}
+  .mobile-panel .close-btn svg{width:20px;height:20px;}
+  .mobile-panel a{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:22px;color:#fff;
+    padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  .mobile-panel .mp-actions{margin-top:auto;display:flex;flex-direction:column;gap:12px;}
+  .mobile-panel .btn-outline-navy{color:#fff;border-color:rgba(255,255,255,0.3);}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="container nav">
+    <a href="#top" class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="brand-text">
+        <span class="name">IPB Connect</span>
+        <span class="tag">Alumni Network</span>
+      </div>
+    </a>
+    <nav class="nav-links">
+      <a href="#top">Beranda</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#ekosistem">Fitur Utama</a>
+      <a href="#program">Program &amp; Event</a>
+      <a href="#alumni">Alumni</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="#" class="btn btn-outline-navy">Login</a>
+      <a href="#" class="btn btn-gold">Daftar</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- mobile panel -->
+<div class="mobile-panel" id="mobilePanel">
+  <div class="mobile-panel-top">
+    <div class="brand">
+      <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div class="brand-text"><span class="name" style="color:#fff;">IPB Connect</span></div>
+    </div>
+    <button class="close-btn" id="navClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <a href="#top">Beranda</a>
+  <a href="#tentang">Tentang</a>
+  <a href="#ekosistem">Fitur Utama</a>
+  <a href="#program">Program &amp; Event</a>
+  <a href="#alumni">Alumni</a>
+  <a href="#kontak">Kontak</a>
+  <div class="mp-actions">
+    <a href="#" class="btn btn-outline-navy">Login</a>
+    <a href="#" class="btn btn-gold">Daftar Sekarang</a>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow"><span class="dot"></span> Platform Resmi Alumni IPB University</span>
+      <h1>Saatnya Terhubung dengan <span class="accent">Alumni IPB</span></h1>
+      <p class="lede">IPB Connect adalah ekosistem digital resmi untuk seluruh alumni IPB University. Bangun jaringan yang bermakna, temukan peluang karier, ikuti acara eksklusif, dan berkolaborasi untuk berdampak lebih besar bagi almamater dan bangsa.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-gold">Gabung Sekarang
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#ekosistem" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          Pelajari Lebih Lanjut
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num">120K<span class="plus">+</span></div>
+          <div class="label">Alumni tergabung dari berbagai daerah &amp; negara</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">200<span class="plus">+</span></div>
+          <div class="label">Program, webinar, dan kegiatan setiap tahun</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">800<span class="plus">+</span></div>
+          <div class="label">Alumni berprestasi yang menginspirasi</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="device-card">
+        <div class="device-topbar"><span></span><span></span><span></span></div>
+        <div class="device-hero-banner">
+          <div class="t1">Terkoneksi, Bertumbuh, Berdampak</div>
+          <div class="t2">Bersama Alumni IPB — dari kampus untuk karier, jejaring, dan kontribusi nyata.</div>
+        </div>
+        <div class="device-chip-row">
+          <div class="device-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <span>Network</span>
+          </div>
+          <div class="device-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span>Acara</span>
+          </div>
+          <div class="device-chip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg>
+            <span>Karier</span>
+          </div>
+        </div>
+        <div class="device-list">
+          <div class="device-row">
+            <div class="avatar" style="background:linear-gradient(135deg,#1656B6,#0D2875);"></div>
+            <div class="lines"><div class="l1"></div><div class="l2"></div></div>
+            <div class="badge"></div>
+          </div>
+          <div class="device-row">
+            <div class="avatar" style="background:linear-gradient(135deg,#FFC107,#E8A800);"></div>
+            <div class="lines"><div class="l1"></div><div class="l2"></div></div>
+            <div class="badge"></div>
+          </div>
+          <div class="device-row">
+            <div class="avatar" style="background:linear-gradient(135deg,#2E7D5B,#134731);"></div>
+            <div class="lines"><div class="l1"></div><div class="l2"></div></div>
+            <div class="badge"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="phone-card">
+        <div class="phone-screen">
+          <div class="phone-status"><span>9:41</span><span>●●●</span></div>
+          <div class="phone-app-top">
+            <div class="p1">Selamat datang kembali 👋</div>
+            <div class="p2">Halo, Alumni IPB!</div>
+          </div>
+          <div class="phone-grid">
+            <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+            <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+            <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="float-badge b1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.4 2.3 7.2L12 16.6 5.7 21 8 13.8 2 9.4h7.6z"/></svg>
+        <div><div class="ft">Alumni Berprestasi</div><div class="fv">800+ Profil</div></div>
+      </div>
+      <div class="float-badge b2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div><div class="ft">Akun Terverifikasi</div><div class="fv">Alumni IPB</div></div>
+      </div>
+    </div>
+  </div>
+
+  <svg class="hero-wave" viewBox="0 0 1440 90" preserveAspectRatio="none" style="height:70px;">
+    <path fill="#F0F2F6" d="M0,32 C240,80 480,0 720,24 C960,48 1200,88 1440,40 L1440,90 L0,90 Z"></path>
+  </svg>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust-strip">
+  <div class="container">
+    <span class="label">Didukung Oleh</span>
+    <div class="trust-logos">
+      <span>IPB University</span>
+      <span>Himpunan Alumni IPB</span>
+      <span>Fakultas &amp; Sekolah</span>
+      <span>Direktorat &amp; Unit</span>
+      <span>Mitra Resmi IPB</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="section about" id="tentang">
+  <div class="container about-grid">
+    <div class="about-visual reveal">
+      <div class="about-panel">
+        <div class="quote">IPB Connect adalah tempat alumni IPB <span class="hl">saling berbagi</span> dan <span class="hl">terkoneksi.</span></div>
+        <div class="about-mini-stats">
+          <div><div class="n">4.9/5</div><div class="l">Rating Pengguna</div></div>
+          <div><div class="n">24/7</div><div class="l">Akses Mobile</div></div>
+          <div><div class="n">100%</div><div class="l">Data Terverifikasi</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow"><span class="dot"></span> Tentang IPB Connect</span>
+      <h2 style="margin-top:18px;">Satu platform untuk seluruh <span class="accent">perjalanan alumni</span></h2>
+      <p style="margin-top:14px;font-size:16px;">Platform resmi yang menyediakan berbagai layanan digital untuk mendukung kebutuhan alumni dalam membangun jejaring, memperoleh informasi, serta berinteraksi dengan ekosistem alumni IPB — kapan pun dan di mana pun.</p>
+
+      <div style="margin-top:20px;">
+        <div class="feature-line">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M21 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+          <div><h4>Satu Platform Terintegrasi</h4><p>Jejaring, karier, acara, dan pengembangan diri dalam satu ekosistem digital.</p></div>
+        </div>
+        <div class="feature-line">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20l9-5-9-5-9 5 9 5z"/><path d="M12 10L3 5l9-5 9 5-9 5z"/></svg></div>
+          <div><h4>Data Terhubung &amp; Akurat</h4><p>Profil alumni terverifikasi, mendukung keputusan yang berbasis data.</p></div>
+        </div>
+        <div class="feature-line">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></div>
+          <div><h4>Ditenagai AI Assistant</h4><p>Rekomendasi personal untuk karier, akademik, dan peluang kolaborasi.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ECOSYSTEM (signature) ============ -->
+<section class="section ecosystem" id="ekosistem">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow"><span class="dot"></span> Fitur Utama</span>
+      <h2 style="margin-top:18px;">Ekosistem yang akan <span class="accent">Anda rasakan</span></h2>
+      <p>Delapan pilar layanan yang saling terhubung, dirancang untuk menemani perjalanan alumni dari kampus hingga dunia profesional.</p>
+    </div>
+
+    <div class="orbit-wrap reveal">
+      <div class="orbit-ring r1"></div>
+      <div class="orbit-center">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        <span>IPB Connect</span>
+      </div>
+
+      <div class="orbit-node" style="--angle:0deg; --hover-transform: rotate(0deg) translate(240px) rotate(0deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <h5>Beranda &amp; Social Feed</h5><p>Update &amp; interaksi alumni</p>
+      </div>
+      <div class="orbit-node" style="--angle:45deg; --hover-transform: rotate(45deg) translate(240px) rotate(-45deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h5>My Network</h5><p>Direktori &amp; koneksi alumni</p>
+      </div>
+      <div class="orbit-node" style="--angle:90deg; --hover-transform: rotate(90deg) translate(240px) rotate(-90deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+        <h5>Event Ecosystem</h5><p>Kelola &amp; ikuti berbagai acara</p>
+      </div>
+      <div class="orbit-node" style="--angle:135deg; --hover-transform: rotate(135deg) translate(240px) rotate(-135deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+        <h5>Career &amp; Job Portal</h5><p>Lowongan &amp; rekomendasi karier</p>
+      </div>
+      <div class="orbit-node" style="--angle:180deg; --hover-transform: rotate(180deg) translate(240px) rotate(-180deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <h5>AlumniDev</h5><p>Program pengembangan &amp; inkubasi</p>
+      </div>
+      <div class="orbit-node" style="--angle:225deg; --hover-transform: rotate(225deg) translate(240px) rotate(-225deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+        <h5>Tracer Study</h5><p>Kuesioner &amp; dashboard progres</p>
+      </div>
+      <div class="orbit-node" style="--angle:270deg; --hover-transform: rotate(270deg) translate(240px) rotate(-270deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <h5>Smart Alumni Profile</h5><p>Profil, portofolio &amp; badge</p>
+      </div>
+      <div class="orbit-node" style="--angle:315deg; --hover-transform: rotate(315deg) translate(240px) rotate(-315deg) scale(1.06);">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg></div>
+        <h5>AI Assistant</h5><p>Rekomendasi &amp; bantuan cerdas</p>
+      </div>
+    </div>
+
+    <div class="ecosystem-grid-mobile reveal">
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div><h5>Beranda &amp; Social Feed</h5><p>Update &amp; interaksi alumni dalam satu timeline.</p></div>
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></div><h5>My Network</h5><p>Direktori lengkap &amp; smart search alumni.</p></div>
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><h5>Event Ecosystem</h5><p>Temukan &amp; ikuti event alumni.</p></div>
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div><h5>Career &amp; Job Portal</h5><p>Lowongan kerja &amp; rekomendasi karier.</p></div>
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg></div><h5>AlumniDev</h5><p>Program pengembangan &amp; inkubasi bisnis.</p></div>
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div><h5>Tracer Study</h5><p>Kuesioner &amp; dashboard progres.</p></div>
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div><h5>Smart Alumni Profile</h5><p>Profil terverifikasi, portofolio &amp; badge.</p></div>
+      <div class="eco-card-m"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/></svg></div><h5>AI Assistant</h5><p>Rekomendasi &amp; bantuan personal.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="section programs" id="program">
+  <div class="container">
+    <div class="section-head-row reveal">
+      <div class="section-head" style="margin-bottom:0;">
+        <span class="eyebrow"><span class="dot"></span> Program &amp; Event</span>
+        <h2 style="margin-top:18px;">Bertemu, berbagi, dan <span class="accent">bertumbuh</span> bersama</h2>
+      </div>
+      <a href="#" class="link-arrow">Lihat semua acara
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="tabs reveal">
+      <span class="tab active">Untuk Anda</span>
+      <span class="tab">Networking</span>
+      <span class="tab">Karier</span>
+      <span class="tab">Webinar</span>
+      <span class="tab">Reuni</span>
+    </div>
+
+    <div class="card-grid reveal">
+      <div class="event-card">
+        <div class="event-thumb c1">
+          <span class="event-tag">WEBINAR</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+        </div>
+        <div class="event-body">
+          <h4>Future of Work: Persiapan Karier Masa Depan</h4>
+          <div class="event-meta">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 15 Mei 2026 · Online</div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Zoom Meeting</div>
+          </div>
+          <div class="event-footer">
+            <span class="attendees"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 342 akan hadir</span>
+            <a href="#" class="link-arrow">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-thumb c2">
+          <span class="event-tag">SEMINAR</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 2v10l7 4"/></svg>
+        </div>
+        <div class="event-body">
+          <h4>Sustainable Agriculture for a Better Future</h4>
+          <div class="event-meta">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 22 Mei 2026</div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kampus IPB Dramaga</div>
+          </div>
+          <div class="event-footer">
+            <span class="attendees"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 214 akan hadir</span>
+            <a href="#" class="link-arrow">Daftar</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-thumb c3">
+          <span class="event-tag">REUNI</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="event-body">
+          <h4>Reuni Akbar Alumni IPB 2025</h4>
+          <div class="event-meta">
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 14 Juni 2026</div>
+            <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kampus IPB</div>
+          </div>
+          <div class="event-footer">
+            <span class="attendees"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> 512 akan hadir</span>
+            <a href="#" class="link-arrow">Daftar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALUMNI PROMINENT ============ -->
+<section class="section alumni" id="alumni">
+  <div class="container">
+    <div class="section-head-row reveal">
+      <div class="section-head" style="margin-bottom:0;">
+        <span class="eyebrow"><span class="dot"></span> Alumni Prominent</span>
+        <h2 style="margin-top:18px;">Sosok yang <span class="accent">menginspirasi</span></h2>
+      </div>
+      <a href="#" class="link-arrow">Lihat semua
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="alumni-grid reveal">
+      <div class="alumni-card">
+        <div class="alumni-avatar" style="background:linear-gradient(135deg,#1656B6,#0D2875);">AS</div>
+        <h4>Prof. Arif Satria</h4>
+        <p class="role">Rektor IPB University</p>
+        <span class="batch">Alumni Faperta '86</span>
+      </div>
+      <div class="alumni-card">
+        <div class="alumni-avatar" style="background:linear-gradient(135deg,#FFC107,#E8A800);">SC</div>
+        <h4>Dr. Sari Chairunnisa</h4>
+        <p class="role">Direktur Utama PT. Berdikari (Persero)</p>
+        <span class="batch">Alumni FEM '92</span>
+      </div>
+      <div class="alumni-card">
+        <div class="alumni-avatar" style="background:linear-gradient(135deg,#2E7D5B,#134731);">BB</div>
+        <h4>Prof. Bambang Brodjonegoro</h4>
+        <p class="role">Penasihat Khusus Presiden RI</p>
+        <span class="batch">Alumni Ekonomi '90</span>
+      </div>
+      <div class="alumni-card">
+        <div class="alumni-avatar" style="background:linear-gradient(135deg,#C97A1F,#7A4A0F);">IN</div>
+        <h4>Dr. Ika Ningtyas</h4>
+        <p class="role">Founder &amp; CEO Arkadia Works</p>
+        <span class="batch">Alumni FPIK '01</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BENEFITS STRIP ============ -->
+<section class="benefits">
+  <div class="container" style="padding-top:56px;padding-bottom:56px;">
+    <div class="benefits-grid">
+      <div class="benefit-item reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg></div>
+        <h5>Satu Platform Terintegrasi</h5>
+        <p>Seluruh layanan alumni dalam satu tempat.</p>
+      </div>
+      <div class="benefit-item reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></svg></div>
+        <h5>Pengalaman Modern</h5>
+        <p>Antarmuka intuitif &amp; responsif.</p>
+      </div>
+      <div class="benefit-item reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h5>Data Terhubung &amp; Akurat</h5>
+        <p>Profil alumni terverifikasi.</p>
+      </div>
+      <div class="benefit-item reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M14 9h1M14 13h1M9 21v-4h6v4"/></svg></div>
+        <h5>Mendukung Kampus</h5>
+        <p>Terhubung dengan almamater.</p>
+      </div>
+      <div class="benefit-item reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/></svg></div>
+        <h5>AI-Powered Assistance</h5>
+        <p>Rekomendasi personal untuk Anda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP CTA ============ -->
+<section class="app-cta">
+  <div class="container" style="padding-top:88px;padding-bottom:88px;">
+    <div class="app-cta-grid">
+      <div class="reveal">
+        <span class="eyebrow" style="background:rgba(255,255,255,0.14);color:#fff;">
+          <span class="dot"></span> IPB Connect di Genggaman Anda
+        </span>
+        <h2 style="margin-top:18px;">Akses semua layanan alumni lebih mudah dalam genggaman</h2>
+        <p>Unduh aplikasi IPB Connect dan nikmati jejaring, acara, lowongan, serta diskusi kapan saja, di mana saja.</p>
+        <div class="store-badges">
+          <a href="#" class="store-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 12.3c0-2.9 2.3-4.2 2.4-4.3-1.3-1.9-3.4-2.2-4.1-2.2-1.7-.2-3.4 1-4.3 1-.9 0-2.2-1-3.7-1-1.9 0-3.7 1.1-4.7 2.8-2 3.5-.5 8.6 1.4 11.4 1 1.4 2.1 2.9 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.5-2.8 1.1-1.6 1.5-3.1 1.5-3.2-.1 0-3-1.1-3-4.6zM14.9 3.8c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.6.8-3.4 1.8-.7.8-1.4 2.2-1.2 3.6 1.3.1 2.6-.7 3.4-1.6z"/></svg>
+            <div><span class="s1">Download on the</span><span class="s2">App Store</span></div>
+          </a>
+          <a href="#" class="store-badge">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.6c-.3.3-.5.8-.5 1.4v16c0 .6.2 1.1.5 1.4l.1.1L13 12v-.1L3.7 2.5l-.1.1z"/><path d="M16.2 15.2L13 12l3.2-3.2 3.9 2.2c1.1.6 1.1 1.6 0 2.2l-3.9 2.2z" opacity=".7"/><path d="M16.2 15.2L13 12 3.6 21.4c.4.4 1 .4 1.7 0l10.9-6.2z"/><path d="M16.2 8.8L5.3 2.6c-.7-.4-1.3-.4-1.7 0L13 12l3.2-3.2z" opacity=".85"/></svg>
+            <div><span class="s1">GET IT ON</span><span class="s2">Google Play</span></div>
+          </a>
+        </div>
+      </div>
+      <div class="app-cta-visual reveal">
+        <div class="phone-card" style="background:#08133C;border-color:#08133C;">
+          <div class="phone-screen">
+            <div class="phone-status"><span>9:41</span><span>●●●</span></div>
+            <div class="phone-app-top">
+              <div class="p1">IPB Connect Mobile</div>
+              <div class="p2">Satu Almamater, Banyak Peluang</div>
+            </div>
+            <div class="phone-grid">
+              <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+              <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></div>
+              <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></div>
+              <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+              <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+              <div class="phone-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="kontak">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand">
+          <div class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <div class="brand-text"><span class="name">IPB Connect</span></div>
+        </div>
+        <p>Platform resmi alumni IPB University — membangun ekosistem yang menghubungkan alumni, memperluas peluang, dan mendukung pengembangan kampus secara berkelanjutan.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.5 6.2a2.8 2.8 0 0 0-2-2C18.9 3.7 12 3.7 12 3.7s-6.9 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.8 2.8 2.8 0 0 0 2 2c1.6.5 8.5.5 8.5.5s6.9 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.8z"/><polygon points="9.8 15.5 15.8 12 9.8 8.5 9.8 15.5"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Navigasi</h5>
+        <ul>
+          <li><a href="#top">Beranda</a></li>
+          <li><a href="#tentang">Tentang Kami</a></li>
+          <li><a href="#program">Program &amp; Event</a></li>
+          <li><a href="#alumni">Alumni Prominent</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Fitur</h5>
+        <ul>
+          <li><a href="#ekosistem">My Network</a></li>
+          <li><a href="#ekosistem">Lowongan Kerja</a></li>
+          <li><a href="#ekosistem">AlumniDev</a></li>
+          <li><a href="#ekosistem">Tracer Study</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Kontak</h5>
+        <ul class="footer-contact">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Kampus IPB Dramaga, Bogor, Jawa Barat 16680</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.1-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 3a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .7a2 2 0 0 1 1.7 2z"/></svg>
+            <span>(0251) 862-6000</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>
+            <span>connect@ipb.ac.id</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 IPB Connect — IPB University. Seluruh hak cipta dilindungi.</span>
+      <span>Dikembangkan bersama <a href="#">Campus Innovate</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav
+  const navToggle = document.getElementById('navToggle');
+  const navClose = document.getElementById('navClose');
+  const mobilePanel = document.getElementById('mobilePanel');
+  navToggle?.addEventListener('click', () => mobilePanel.classList.add('open'));
+  navClose?.addEventListener('click', () => mobilePanel.classList.remove('open'));
+  mobilePanel?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobilePanel.classList.remove('open')));
+
+  // tabs
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+    });
+  });
+
+  // scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(el => io.observe(el));
+  } else {
+    reveals.forEach(el => el.classList.add('in'));
+  }
+</script>
+</body>
+</html>
