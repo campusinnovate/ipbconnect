@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beranda | IPB Connect</title>
+<meta name="description" content="Dashboard alumni IPB Connect — jejaring, event, lowongan, dan pengembangan diri dalam satu tempat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-900:#0A1B4D;
+    --navy:#0D2875;
+    --navy-700:#123893;
+    --blue:#1656B6;
+    --blue-100:#E8EFFC;
+    --gold:#FFC107;
+    --gold-dark:#E8A800;
+    --bg:#F0F2F6;
+    --white:#FFFFFF;
+    --ink:#0A1B4D;
+    --muted:#5B6B8C;
+    --muted-2:#8A96B3;
+    --border:#E1E6F2;
+    --green:#1E8E5A;
+    --green-100:#E4F7ED;
+    --red:#E14A4A;
+    --radius-sm:10px;
+    --radius-md:16px;
+    --radius-lg:22px;
+    --shadow-sm:0 2px 10px rgba(13,40,117,0.06);
+    --shadow-md:0 12px 28px rgba(13,40,117,0.10);
+    --shadow-lg:0 20px 48px rgba(13,40,117,0.14);
+    --sidebar-w:264px;
+    --rightcol-w:336px;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  body{
+    margin:0;font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,h5{font-family:'Plus Jakarta Sans',sans-serif;margin:0;color:var(--navy-900);letter-spacing:-0.01em;}
+  p{margin:0;color:var(--muted);line-height:1.65;}
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;margin:0;padding:0;}
+  img{max-width:100%;display:block;}
+  button{font-family:inherit;cursor:pointer;background:none;border:none;}
+  input{font-family:inherit;}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;
+    padding:12px 22px;border-radius:11px;border:1.5px solid transparent;cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    white-space:nowrap;
+  }
+  .btn svg{width:16px;height:16px;flex-shrink:0;}
+  .btn-gold{background:var(--gold);color:var(--navy-900);box-shadow:0 8px 20px rgba(255,193,7,0.3);}
+  .btn-gold:hover{transform:translateY(-1px);}
+  .btn-white{background:#fff;color:var(--navy);}
+  .btn-white:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,0,0,0.12);}
+  .btn-outline{background:transparent;border-color:var(--border);color:var(--navy-900);}
+  .btn-outline:hover{border-color:var(--blue);color:var(--blue);}
+  .btn-navy{background:var(--navy);color:#fff;}
+  .btn-navy:hover{background:var(--navy-700);}
+  .btn-sm{padding:8px 15px;font-size:12.5px;border-radius:9px;}
+  .btn-block{width:100%;}
+  .btn-ghost-sm{
+    display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;
+    font-family:'Plus Jakarta Sans',sans-serif;color:var(--blue);padding:6px 10px;border-radius:8px;
+  }
+  .btn-ghost-sm:hover{background:var(--blue-100);}
+  .btn-connected{background:var(--green-100);color:var(--green);border-color:var(--green-100);}
+
+  .icon-btn{
+    width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+    color:var(--navy-900);position:relative;transition:background .15s ease;flex-shrink:0;
+  }
+  .icon-btn:hover{background:var(--bg);}
+  .icon-btn svg{width:20px;height:20px;}
+  .icon-btn .badge-dot{
+    position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:9px;font-weight:800;
+    width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    border:2px solid #fff;
+  }
+
+  /* ============ SHELL LAYOUT ============ */
+  .app-shell{display:flex;min-height:100vh;}
+
+  /* ---- sidebar ---- */
+  .sidebar{
+    width:var(--sidebar-w);flex-shrink:0;background:#fff;border-right:1px solid var(--border);
+    position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;padding:22px 18px;z-index:80;
+    transition:transform .25s ease;
+  }
+  .sb-brand{display:flex;align-items:center;gap:11px;padding:6px 8px 22px;}
+  .sb-mark{
+    width:40px;height:40px;border-radius:11px;background:linear-gradient(145deg,var(--navy),var(--blue));
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .sb-mark svg{width:21px;height:21px;color:var(--gold);}
+  .sb-brand .name{font-weight:800;font-size:17px;color:var(--navy-900);}
+  .sb-brand .tag{font-size:10.5px;color:var(--muted-2);font-weight:600;}
+
+  .sb-nav{display:flex;flex-direction:column;gap:4px;}
+  .sb-link{
+    display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:12px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:14.5px;color:var(--muted);
+    transition:background .15s ease,color .15s ease;
+  }
+  .sb-link svg{width:19px;height:19px;flex-shrink:0;}
+  .sb-link:hover{background:var(--bg);color:var(--navy-900);}
+  .sb-link.active{background:var(--blue-100);color:var(--blue);}
+  .sb-link.active svg{color:var(--blue);}
+
+  .sb-bottom-card{
+    margin-top:auto;border-radius:18px;padding:22px 18px;color:#fff;
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 60%,var(--blue) 100%);
+    position:relative;overflow:hidden;
+  }
+  .sb-bottom-card::after{
+    content:'';position:absolute;right:-30px;bottom:-30px;width:110px;height:110px;border-radius:50%;
+    background:rgba(255,193,7,0.14);
+  }
+  .sb-bottom-card p{color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14px;line-height:1.5;position:relative;z-index:1;}
+  .sb-bottom-card svg{width:100%;height:56px;margin-top:16px;opacity:0.9;position:relative;z-index:1;}
+
+  .sb-close{display:none;}
+
+  /* ---- main wrap ---- */
+  .main-wrap{margin-left:var(--sidebar-w);flex:1;min-width:0;display:flex;flex-direction:column;}
+
+  /* ---- topbar ---- */
+  .topbar{
+    position:sticky;top:0;z-index:70;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:15px 32px;}
+  .sb-toggle{display:none;}
+  .search-box{
+    flex:1;max-width:460px;display:flex;align-items:center;gap:10px;background:var(--bg);
+    border-radius:12px;padding:11px 16px;
+  }
+  .search-box svg{width:18px;height:18px;color:var(--muted-2);flex-shrink:0;}
+  .search-box input{border:none;background:none;outline:none;font-size:14px;color:var(--ink);width:100%;}
+  .search-box input::placeholder{color:var(--muted-2);}
+
+  .topbar-actions{display:flex;align-items:center;gap:6px;}
+  .discuss-btn{
+    display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13.5px;color:var(--navy-900);
+  }
+  .discuss-btn:hover{background:var(--bg);}
+  .discuss-btn svg{width:18px;height:18px;}
+
+  .profile-cluster{display:flex;align-items:center;gap:10px;padding:6px 10px 6px 6px;border-radius:14px;cursor:pointer;position:relative;}
+  .profile-cluster:hover{background:var(--bg);}
+  .avatar-circle{
+    width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13px;color:#fff;
+    background:linear-gradient(135deg,var(--blue),var(--navy));
+  }
+  .profile-cluster .who{line-height:1.3;}
+  .profile-cluster .who .h{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13.5px;color:var(--navy-900);}
+  .profile-cluster .who .s{font-size:11px;color:var(--muted-2);}
+  .profile-cluster > svg{width:16px;height:16px;color:var(--muted-2);}
+
+  /* ---- dropdowns ---- */
+  .dropdown{position:relative;}
+  .dropdown-panel{
+    position:absolute;top:calc(100% + 10px);right:0;background:#fff;border-radius:14px;
+    box-shadow:var(--shadow-lg);border:1px solid var(--border);width:300px;
+    opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .18s ease;z-index:90;
+    overflow:hidden;
+  }
+  .dropdown-panel.open{opacity:1;visibility:visible;transform:translateY(0);}
+  .dropdown-panel.menu{width:200px;padding:8px;}
+  .dropdown-panel .dd-head{padding:14px 16px;border-bottom:1px solid var(--border);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:13.5px;}
+  .dd-item{display:flex;gap:12px;padding:13px 16px;border-bottom:1px solid var(--border);}
+  .dd-item:last-child{border-bottom:none;}
+  .dd-item .ic{width:34px;height:34px;border-radius:9px;background:var(--blue-100);color:var(--blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .dd-item .ic svg{width:16px;height:16px;}
+  .dd-item .tt{font-size:12.5px;font-weight:600;color:var(--navy-900);line-height:1.4;}
+  .dd-item .tm{font-size:10.5px;color:var(--muted-2);margin-top:3px;}
+  .menu-link{
+    display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:9px;font-size:13.5px;font-weight:600;color:var(--navy-900);
+  }
+  .menu-link svg{width:17px;height:17px;color:var(--muted-2);}
+  .menu-link:hover{background:var(--bg);}
+  .menu-link.danger{color:var(--red);}
+  .menu-link.danger svg{color:var(--red);}
+  .menu-sep{height:1px;background:var(--border);margin:6px 4px;}
+
+  /* ---- content area ---- */
+  .content-area{padding:26px 32px 70px;max-width:1400px;}
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;animation:fadeIn .35s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .dash-grid{display:grid;grid-template-columns:1fr var(--rightcol-w);gap:24px;align-items:start;}
+  .feed-col{display:flex;flex-direction:column;gap:22px;min-width:0;}
+  .side-col{display:flex;flex-direction:column;gap:20px;position:sticky;top:90px;}
+
+  /* ---- generic panel card ---- */
+  .panel-card{background:#fff;border-radius:var(--radius-md);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:22px;}
+  .panel-header{display:flex;align-items:center;justify-content:between;justify-content:space-between;margin-bottom:16px;}
+  .panel-header h3{font-size:16px;font-weight:700;}
+  .panel-header .sub{font-size:12px;color:var(--muted-2);margin-top:3px;}
+
+  /* ============ HERO BANNER ============ */
+  .hero-banner{
+    background:linear-gradient(120deg,var(--navy) 0%, var(--navy-700) 55%, var(--blue) 100%);
+    border-radius:var(--radius-lg);padding:34px 38px;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    position:relative;overflow:hidden;
+  }
+  .hero-banner::before{content:'';position:absolute;left:-60px;top:-60px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.05);}
+  .hero-banner::after{content:'';position:absolute;right:12%;bottom:-70px;width:180px;height:180px;border-radius:50%;background:rgba(255,193,7,0.12);}
+  .hb-copy{position:relative;z-index:1;max-width:530px;}
+  .hb-logo{width:46px;height:46px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .hb-logo svg{width:24px;height:24px;color:var(--navy);}
+  .hb-greet{color:rgba(255,255,255,0.85);font-size:14.5px;font-weight:500;}
+  .hero-banner h2{color:#fff;font-size:clamp(22px,2.6vw,30px);font-weight:800;margin-top:8px;line-height:1.3;}
+  .hero-banner h2 .gold{color:var(--gold);}
+  .hb-sub{color:rgba(255,255,255,0.75);margin-top:10px;font-size:14.5px;}
+  .hero-banner .btn{margin-top:22px;}
+  .hb-art{position:relative;z-index:1;flex-shrink:0;width:280px;display:flex;justify-content:center;}
+
+  /* ============ STATS ROW ============ */
+  .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .stat-card{
+    background:#fff;border-radius:14px;border:1px solid var(--border);box-shadow:var(--shadow-sm);
+    padding:18px;display:flex;align-items:center;gap:14px;transition:transform .18s ease, box-shadow .18s ease;cursor:default;
+  }
+  .stat-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .stat-card .ic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .stat-card .ic svg{width:21px;height:21px;}
+  .stat-card .num{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:21px;color:var(--navy-900);}
+  .stat-card .label{font-size:11.5px;color:var(--muted);margin-top:1px;}
+
+  /* ============ COMPOSER ============ */
+  .composer .composer-top{display:flex;align-items:center;gap:13px;}
+  .composer-input{
+    flex:1;background:var(--bg);border-radius:14px;padding:13px 18px;font-size:14px;color:var(--muted-2);
+  }
+  .composer-actions{display:flex;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border);}
+  .composer-btn{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px;border-radius:10px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:13px;color:var(--muted);
+  }
+  .composer-btn:hover{background:var(--bg);}
+  .composer-btn svg{width:18px;height:18px;}
+  .composer-btn.c-photo svg{color:var(--green);}
+  .composer-btn.c-article svg{color:var(--blue);}
+  .composer-btn.c-job svg{color:var(--gold-dark);}
+  .composer-btn.c-event svg{color:var(--red);}
+
+  /* ============ POSTS ============ */
+  .post-card{background:#fff;border-radius:var(--radius-md);border:1px solid var(--border);box-shadow:var(--shadow-sm);padding:22px;}
+  .post-head{display:flex;align-items:flex-start;justify-content:space-between;}
+  .post-who{display:flex;gap:12px;}
+  .post-who .lines .nm{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:14.5px;color:var(--navy-900);}
+  .post-who .lines .nm span{color:var(--muted-2);font-weight:500;font-size:12.5px;}
+  .post-who .lines .role{font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .post-who .lines .time{font-size:11.5px;color:var(--muted-2);margin-top:3px;display:flex;align-items:center;gap:5px;}
+  .post-who .lines .time svg{width:11px;height:11px;}
+  .post-menu-btn{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted-2);}
+  .post-menu-btn:hover{background:var(--bg);}
+  .post-menu-btn svg{width:18px;height:18px;}
+  .post-body-text{margin-top:14px;font-size:14px;color:var(--ink);line-height:1.7;}
+  .post-image{margin-top:14px;border-radius:14px;overflow:hidden;height:220px;position:relative;}
+  .post-image svg{width:52px;height:52px;color:rgba(255,255,255,0.55);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+  .post-reaction-row{display:flex;align-items:center;justify-content:space-between;margin-top:16px;font-size:12px;color:var(--muted-2);}
+  .reaction-chips{display:flex;align-items:center;gap:6px;}
+  .reaction-chips .chip-icons{display:flex;}
+  .reaction-chips .chip-icons span{
+    width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;
+    border:2px solid #fff;margin-left:-6px;
+  }
+  .reaction-chips .chip-icons span:first-child{margin-left:0;background:#FF6B6B;}
+  .reaction-chips .chip-icons span:nth-child(2){background:var(--gold);}
+  .post-actions{display:flex;border-top:1px solid var(--border);margin-top:14px;padding-top:10px;gap:4px;}
+  .post-action-btn{
+    flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:9px;border-radius:9px;
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:12.5px;color:var(--muted);
+  }
+  .post-action-btn svg{width:17px;height:17px;}
+  .post-action-btn:hover{background:var(--bg);}
+  .post-action-btn.liked{color:var(--blue);}
+  .post-action-btn.saved{color:var(--gold-dark);}
+
+  /* ============ EVENT HISTORY ============ */
+  .history-row{
+    display:flex;align-items:center;gap:14px;padding:14px 6px;border-bottom:1px solid var(--border);
+  }
+  .history-row:last-child{border-bottom:none;}
+  .history-thumb{
+    width:48px;height:48px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;
+  }
+  .history-thumb svg{width:22px;height:22px;}
+  .history-info{flex:1;min-width:0;}
+  .history-info h5{font-size:13.5px;font-weight:700;color:var(--navy-900);}
+  .history-info .meta{font-size:11.5px;color:var(--muted-2);margin-top:4px;display:flex;gap:12px;flex-wrap:wrap;}
+  .history-info .meta span{display:flex;align-items:center;gap:4px;}
+  .history-info .meta svg{width:11px;height:11px;}
+  .history-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .status-badge{
+    font-size:10.5px;font-weight:700;padding:5px 11px;border-radius:999px;font-family:'Plus Jakarta Sans',sans-serif;
+    display:flex;align-items:center;gap:5px;white-space:nowrap;
+  }
+  .status-badge svg{width:11px;height:11px;}
+  .status-badge.hadir{background:var(--green-100);color:var(--green);}
+  .status-badge.absen{background:#FBE9E9;color:var(--red);}
+  .status-badge.upcoming{background:var(--blue-100);color:var(--blue);}
+
+  /* ============ MINI JOB CARDS ============ */
+  .job-row-scroll{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .job-mini{border:1px solid var(--border);border-radius:14px;padding:16px;transition:box-shadow .15s ease, transform .15s ease;}
+  .job-mini:hover{box-shadow:var(--shadow-md);transform:translateY(-2px);}
+  .job-mini-top{display:flex;justify-content:space-between;align-items:flex-start;}
+  .company-badge{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:13px;flex-shrink:0;}
+  .job-mini h5{font-size:13.5px;font-weight:700;margin-top:12px;}
+  .job-mini .co{font-size:12px;color:var(--muted);margin-top:2px;}
+  .job-mini .meta-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
+  .job-tag{font-size:10px;font-weight:700;background:var(--bg);color:var(--muted);padding:4px 9px;border-radius:7px;font-family:'Plus Jakarta Sans',sans-serif;}
+  .job-mini .salary{font-size:12px;font-weight:700;color:var(--navy-900);margin-top:10px;}
+  .bookmark-btn{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted-2);flex-shrink:0;}
+  .bookmark-btn:hover{background:var(--bg);}
+  .bookmark-btn svg{width:16px;height:16px;}
+  .bookmark-btn.saved{color:var(--gold-dark);}
+
+  /* ============ RIGHT SIDEBAR WIDGETS ============ */
+  .progress-ring-wrap{display:flex;align-items:center;gap:16px;}
+  .progress-ring{position:relative;width:74px;height:74px;flex-shrink:0;}
+  .progress-ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .progress-ring .pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:15px;color:var(--navy-900);}
+  .progress-detail p{font-size:12px;}
+  .progress-detail .strong{font-weight:700;color:var(--navy-900);font-size:13px;}
+
+  .upcoming-item{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);}
+  .upcoming-item:last-child{border-bottom:none;}
+  .date-box{
+    width:44px;height:44px;border-radius:10px;background:var(--blue-100);color:var(--blue);flex-shrink:0;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Plus Jakarta Sans',sans-serif;
+  }
+  .date-box .d{font-weight:800;font-size:14px;line-height:1;}
+  .date-box .m{font-size:9px;font-weight:700;text-transform:uppercase;margin-top:2px;}
+  .upcoming-item h5{font-size:12.5px;font-weight:700;line-height:1.4;}
+  .upcoming-item .t{font-size:11px;color:var(--muted-2);margin-top:4px;}
+
+  .know-item{display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--border);}
+  .know-item:last-child{border-bottom:none;}
+  .know-item .info{flex:1;min-width:0;}
+  .know-item h5{font-size:12.5px;font-weight:700;}
+  .know-item p{font-size:11px;margin-top:2px;}
+  .know-item .btn{padding:7px 13px;font-size:11px;}
+
+  .mobile-promo-card{
+    background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 60%,var(--blue) 100%);
+    border-radius:var(--radius-md);padding:24px;color:#fff;position:relative;overflow:hidden;
+  }
+  .mobile-promo-card::after{content:'';position:absolute;right:-40px;top:-40px;width:150px;height:150px;border-radius:50%;background:rgba(255,193,7,0.12);}
+  .mobile-promo-card h4{color:#fff;font-size:16px;position:relative;z-index:1;}
+  .mobile-promo-card p{color:rgba(255,255,255,0.7);font-size:12px;margin-top:8px;position:relative;z-index:1;}
+  .mp-badges{display:flex;gap:8px;margin-top:16px;position:relative;z-index:1;}
+  .mp-badge{
+    flex:1;display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+    border-radius:9px;padding:8px 10px;
+  }
+  .mp-badge svg{width:16px;height:16px;flex-shrink:0;}
+  .mp-badge .s1{font-size:7.5px;opacity:0.8;display:block;}
+  .mp-badge .s2{font-size:10.5px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;}
+
+  /* ============ SECTION HEADER (non-beranda tabs) ============ */
+  .page-head{margin-bottom:22px;}
+  .page-head h2{font-size:24px;font-weight:800;}
+  .page-head p{margin-top:6px;font-size:13.5px;}
+  .page-head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:22px;}
+
+  .filter-chip-row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px;}
+  .chip{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;font-size:12.5px;padding:9px 16px;border-radius:999px;
+    border:1px solid var(--border);color:var(--muted);
+  }
+  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy);}
+
+  /* mini stat pill row (network / tracer) */
+  .pill-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+  .pill-stat{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow-sm);}
+  .pill-stat .n{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:var(--navy-900);}
+  .pill-stat .l{font-size:11.5px;color:var(--muted);margin-top:3px;}
+
+  /* network grid */
+  .network-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+  .network-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;text-align:center;box-shadow:var(--shadow-sm);transition:transform .15s ease;}
+  .network-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+  .network-card .av{width:64px;height:64px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;}
+  .network-card h5{font-size:13.5px;font-weight:700;}
+  .network-card .role{font-size:11px;color:var(--muted);margin-top:5px;min-height:28px;}
+  .network-card .mutual{font-size:10.5px;color:var(--muted-2);margin-top:6px;}
+  .network-card .btn{width:100%;margin-top:12px;}
+
+  /* event cards grid (acara tab) reused style */
+  .card-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .evt-card{border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow-sm);transition:transform .15s ease;}
+  .evt-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+  .evt-thumb{height:120px;position:relative;display:flex;align-items:flex-end;padding:14px;}
+  .evt-thumb svg{width:36px;height:36px;color:rgba(255,255,255,0.35);position:absolute;right:14px;bottom:12px;}
+  .evt-tag{background:rgba(255,255,255,0.18);color:#fff;font-size:10px;font-weight:700;padding:4px 11px;border-radius:999px;font-family:'Plus Jakarta Sans',sans-serif;}
+  .evt-body{padding:17px;}
+  .evt-body h4{font-size:14.5px;font-weight:700;line-height:1.4;}
+  .evt-meta{display:flex;flex-direction:column;gap:5px;margin-top:10px;}
+  .evt-meta .row{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--muted);}
+  .evt-meta .row svg{width:12px;height:12px;color:var(--muted-2);}
+  .evt-footer{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--border);}
+
+  /* alumnidev program cards */
+  .program-card{border-radius:16px;border:1px solid var(--border);background:#fff;overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .15s ease;}
+  .program-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+  .program-top{height:8px;}
+  .program-body{padding:19px;}
+  .program-status{font-size:10px;font-weight:700;padding:4px 10px;border-radius:999px;font-family:'Plus Jakarta Sans',sans-serif;display:inline-block;margin-bottom:12px;}
+  .program-body h4{font-size:14.5px;font-weight:700;}
+  .program-body .org{font-size:11.5px;color:var(--muted-2);margin-top:4px;}
+  .program-body p.desc{font-size:12.5px;margin-top:10px;line-height:1.6;}
+  .program-meta{display:flex;gap:14px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);font-size:11px;color:var(--muted-2);}
+  .program-meta span{display:flex;align-items:center;gap:5px;}
+  .program-meta svg{width:12px;height:12px;}
+  .program-body .btn{margin-top:16px;}
+
+  /* tracer study */
+  .tracer-overview{display:flex;align-items:center;gap:28px;}
+  .tracer-ring{position:relative;width:110px;height:110px;flex-shrink:0;}
+  .tracer-ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .tracer-ring .pct{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .tracer-ring .pct .n{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:22px;color:var(--navy-900);}
+  .tracer-ring .pct .l{font-size:9px;color:var(--muted-2);}
+  .tracer-item{display:flex;align-items:center;gap:14px;padding:15px 0;border-bottom:1px solid var(--border);}
+  .tracer-item:last-child{border-bottom:none;}
+  .tracer-item .ic{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .tracer-item .ic svg{width:19px;height:19px;}
+  .tracer-item .info{flex:1;}
+  .tracer-item h5{font-size:13.5px;font-weight:700;}
+  .tracer-item .d{font-size:11px;color:var(--muted-2);margin-top:3px;}
+
+  /* profile */
+  .profile-cover{
+    height:130px;border-radius:var(--radius-lg) var(--radius-lg) 0 0;
+    background:linear-gradient(120deg,var(--navy),var(--blue));position:relative;
+  }
+  .profile-card-main{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--border);box-shadow:var(--shadow-sm);overflow:hidden;}
+  .profile-card-body{padding:0 28px 26px;position:relative;}
+  .profile-avatar-lg{
+    width:104px;height:104px;border-radius:50%;border:5px solid #fff;margin-top:-52px;
+    background:linear-gradient(135deg,var(--blue),var(--navy));display:flex;align-items:center;justify-content:center;
+    color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30px;box-shadow:var(--shadow-md);
+  }
+  .profile-name-row{display:flex;justify-content:space-between;align-items:flex-start;margin-top:16px;flex-wrap:wrap;gap:14px;}
+  .profile-name-row h2{font-size:21px;}
+  .profile-name-row .role{font-size:13.5px;color:var(--muted);margin-top:5px;}
+  .profile-name-row .loc{font-size:12px;color:var(--muted-2);margin-top:5px;display:flex;align-items:center;gap:5px;}
+  .profile-name-row .loc svg{width:13px;height:13px;}
+  .profile-stats-row{display:flex;gap:30px;margin-top:20px;padding-top:20px;border-top:1px solid var(--border);flex-wrap:wrap;}
+  .profile-stats-row div .n{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;color:var(--navy-900);}
+  .profile-stats-row div .l{font-size:11px;color:var(--muted-2);margin-top:2px;}
+
+  .tag-chip{display:inline-block;font-size:12px;font-weight:600;background:var(--blue-100);color:var(--blue);padding:7px 14px;border-radius:9px;margin:0 8px 8px 0;font-family:'Plus Jakarta Sans',sans-serif;}
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1180px){
+    .dash-grid{grid-template-columns:1fr;}
+    .side-col{position:static;}
+    .network-grid{grid-template-columns:repeat(3,1fr);}
+    .card-grid3{grid-template-columns:repeat(2,1fr);}
+    .job-row-scroll{grid-template-columns:1fr;}
+  }
+  @media (max-width:900px){
+    .sidebar{transform:translateX(-100%);box-shadow:var(--shadow-lg);}
+    .sidebar.open{transform:translateX(0);}
+    .main-wrap{margin-left:0;}
+    .sb-toggle{display:flex;}
+    .sb-close{display:flex;position:absolute;top:20px;right:18px;width:34px;height:34px;border-radius:9px;background:var(--bg);align-items:center;justify-content:center;}
+    .sb-close svg{width:17px;height:17px;}
+    .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(10,27,77,0.4);z-index:75;}
+    .sidebar-overlay.show{display:block;}
+    .search-box{display:none;}
+    .hero-banner{flex-direction:column;text-align:center;}
+    .hb-copy{max-width:100%;}
+    .hero-banner .btn{margin-left:auto;margin-right:auto;}
+    .hb-art{width:200px;}
+    .stats-row{grid-template-columns:repeat(2,1fr);}
+    .network-grid{grid-template-columns:repeat(2,1fr);}
+    .card-grid3{grid-template-columns:1fr;}
+    .pill-stats{grid-template-columns:repeat(2,1fr);}
+    .tracer-overview{flex-direction:column;text-align:center;}
+  }
+  @media (max-width:640px){
+    .topbar-inner{padding:13px 16px;}
+    .content-area{padding:18px 16px 60px;}
+    .stats-row{grid-template-columns:1fr 1fr;}
+    .job-mini-top{flex-wrap:wrap;}
+    .discuss-btn span{display:none;}
+    .profile-cluster .who{display:none;}
+    .profile-name-row{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar">
+    <button class="sb-close" id="sbClose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <a href="index.html" class="sb-brand">
+      <div class="sb-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+      <div><div class="name">IPB Connect</div><div class="tag">Alumni Network</div></div>
+    </a>
+
+    <nav class="sb-nav">
+      <a href="#" class="sb-link active" data-tab="beranda">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        Beranda
+      </a>
+      <a href="#" class="sb-link" data-tab="network">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/><path d="M22.5 21v-2a4 4 0 0 0-3.5-3.9"/></svg>
+        My Network
+      </a>
+      <a href="#" class="sb-link" data-tab="acara">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        Acara
+      </a>
+      <a href="#" class="sb-link" data-tab="lowongan">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Lowongan
+      </a>
+      <a href="#" class="sb-link" data-tab="alumnidev">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        AlumniDev
+      </a>
+      <a href="#" class="sb-link" data-tab="tracer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+        Tracer Study
+      </a>
+      <a href="#" class="sb-link" data-tab="profil">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        Profil Saya
+      </a>
+    </nav>
+
+    <div class="sb-bottom-card">
+      <p>Bersama alumni, kita tumbuh, terhubung, dan berdampak.</p>
+      <svg viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 55V30l15-12 15 12v25" stroke="rgba(255,255,255,0.5)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M60 55V20l12-9 12 9v35" stroke="rgba(255,255,255,0.75)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M100 55V15h30v40" stroke="rgba(255,255,255,0.9)" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="115" cy="10" r="4" fill="#FFC107"/>
+        <path d="M150 55V28l14-10 14 10v27" stroke="rgba(255,255,255,0.55)" stroke-width="2" stroke-linejoin="round"/>
+        <line x1="10" y1="55" x2="190" y2="55" stroke="rgba(255,255,255,0.35)" stroke-width="2"/>
+      </svg>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main-wrap">
+
+    <!-- topbar -->
+    <header class="topbar">
+      <div class="topbar-inner">
+        <button class="icon-btn sb-toggle" id="sbToggle">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Cari acara, lowongan, alumni, dan lainnya...">
+        </div>
+
+        <div class="topbar-actions">
+          <a href="#" class="discuss-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+            <span>Diskusi</span>
+          </a>
+
+          <div class="dropdown">
+            <button class="icon-btn" id="notifBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="badge-dot">2</span>
+            </button>
+            <div class="dropdown-panel" id="notifPanel">
+              <div class="dd-head">Notifikasi</div>
+              <div class="dd-item">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                <div><div class="tt"><b>Hanafi Anshary</b> ingin terhubung dengan Anda.</div><div class="tm">10 menit lalu</div></div>
+              </div>
+              <div class="dd-item">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></div>
+                <div><div class="tt">Pengingat: <b>Alumni Networking Night</b> besok pukul 18.00.</div><div class="tm">2 jam lalu</div></div>
+              </div>
+              <div class="dd-item">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+                <div><div class="tt">Kuesioner <b>Tracer Study</b> Anda menunggu diisi.</div><div class="tm">1 hari lalu</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <button class="icon-btn" id="mailBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+              <span class="badge-dot">3</span>
+            </button>
+            <div class="dropdown-panel" id="mailPanel">
+              <div class="dd-head">Pesan</div>
+              <div class="dd-item">
+                <div class="ic" style="background:var(--gold);color:#fff;">RS</div>
+                <div><div class="tt"><b>Rina Safitri</b> — Terima kasih sudah hadir kemarin!</div><div class="tm">30 menit lalu</div></div>
+              </div>
+              <div class="dd-item">
+                <div class="ic" style="background:var(--green);color:#fff;">YA</div>
+                <div><div class="tt"><b>Yusuf Abdurrahman</b> — Kabarnya gimana, sibuk?</div><div class="tm">Kemarin</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <div class="profile-cluster" id="profileBtn">
+              <div class="avatar-circle">AP</div>
+              <div class="who"><div class="h">Halo, Andi</div><div class="s">Alumni '20</div></div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </div>
+            <div class="dropdown-panel menu" id="profilePanel">
+              <a href="#" class="menu-link" data-tab="profil">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+                Profil Saya
+              </a>
+              <a href="#" class="menu-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.2a1.7 1.7 0 0 0-1.5 1z"/></svg>
+                Pengaturan
+              </a>
+              <div class="menu-sep"></div>
+              <a href="index.html" class="menu-link danger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                Keluar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- content -->
+    <main class="content-area">
+
+      <!-- ======================================================= -->
+      <!-- TAB: BERANDA -->
+      <!-- ======================================================= -->
+      <section class="tab-panel active" id="tab-beranda">
+        <div class="dash-grid">
+          <div class="feed-col">
+
+            <div class="hero-banner">
+              <div class="hb-copy">
+                <div class="hb-logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+                <div class="hb-greet">Selamat datang kembali, Andi! 👋</div>
+                <h2>Terkoneksi, Bertumbuh, Berdampak <span class="gold">Bersama Alumni IPB</span></h2>
+                <p class="hb-sub">Dari kampus untuk karier, jejaring, dan kontribusi nyata.</p>
+                <button class="btn btn-white">Jelajahi Sekarang
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </button>
+              </div>
+              <div class="hb-art">
+                <svg viewBox="0 0 280 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="90" y="40" width="60" height="120" rx="4" fill="rgba(255,255,255,0.10)"/>
+                  <polygon points="90,40 120,15 150,40" fill="rgba(255,255,255,0.16)"/>
+                  <circle cx="120" cy="24" r="4" fill="#FFC107"/>
+                  <rect x="102" y="60" width="14" height="16" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <rect x="124" y="60" width="14" height="16" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <rect x="102" y="86" width="14" height="16" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <rect x="124" y="86" width="14" height="16" rx="2" fill="rgba(255,255,255,0.25)"/>
+                  <g>
+                    <circle cx="45" cy="120" r="16" fill="#FFC107"/>
+                    <path d="M20 200v-30a25 25 0 0 1 50 0v30z" fill="#FFC107"/>
+                  </g>
+                  <g>
+                    <circle cx="200" cy="112" r="18" fill="#ffffff"/>
+                    <path d="M170 200v-32a30 30 0 0 1 60 0v32z" fill="#ffffff"/>
+                  </g>
+                  <g>
+                    <circle cx="245" cy="128" r="14" fill="rgba(255,255,255,0.55)"/>
+                    <path d="M223 200v-27a22 22 0 0 1 44 0v27z" fill="rgba(255,255,255,0.55)"/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            <div class="stats-row">
+              <div class="stat-card">
+                <div class="ic" style="background:var(--blue-100);color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></div>
+                <div><div class="num">128</div><div class="label">Koneksi</div></div>
+              </div>
+              <div class="stat-card">
+                <div class="ic" style="background:var(--green-100);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M9 16l2 2 4-4"/></svg></div>
+                <div><div class="num">12</div><div class="label">Event Diikuti</div></div>
+              </div>
+              <div class="stat-card">
+                <div class="ic" style="background:#FFF4D6;color:var(--gold-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></div>
+                <div><div class="num">5</div><div class="label">Lowongan Disimpan</div></div>
+              </div>
+              <div class="stat-card" style="cursor:pointer;" data-tab-trigger="tracer">
+                <div class="ic" style="background:#F3E8FF;color:#8B5CF6;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+                <div><div class="num">75%</div><div class="label">Progress Tracer Study</div></div>
+              </div>
+            </div>
+
+            <div class="panel-card composer">
+              <div class="composer-top">
+                <div class="avatar-circle">AP</div>
+                <div class="composer-input">Bagikan cerita, insight, atau update Anda...</div>
+              </div>
+              <div class="composer-actions">
+                <button class="composer-btn c-photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg> Foto</button>
+                <button class="composer-btn c-article"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Artikel</button>
+                <button class="composer-btn c-job"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg> Lowongan</button>
+                <button class="composer-btn c-event"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> Event</button>
+              </div>
+            </div>
+
+            <!-- POST 1 -->
+            <div class="post-card">
+              <div class="post-head">
+                <div class="post-who">
+                  <div class="avatar-circle" style="background:linear-gradient(135deg,#FFC107,#E8A800);">RS</div>
+                  <div class="lines">
+                    <div class="nm">Rina Safitri <span>· Alumni '18</span></div>
+                    <div class="role">Research Associate di World Agroforestry</div>
+                    <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 2 jam yang lalu</div>
+                  </div>
+                </div>
+                <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              </div>
+              <p class="post-body-text">Senang bisa kembali ke kampus IPB untuk berbagi pengalaman di acara Alumni Mengajar hari ini. Terima kasih untuk sambutan hangatnya! 💙🌱</p>
+              <div class="post-image" style="background:linear-gradient(135deg,#1656B6,#0D2875);">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              </div>
+              <div class="post-reaction-row">
+                <div class="reaction-chips">
+                  <div class="chip-icons"><span>👍</span><span>😍</span></div>
+                  <span>Anda, Yusuf A., dan 124 lainnya</span>
+                </div>
+                <span>12 Komentar · 8 Dibagikan</span>
+              </div>
+              <div class="post-actions">
+                <button class="post-action-btn like-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.3a2 2 0 0 0 2-1.7l1.4-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg><span>Suka</span></button>
+                <button class="post-action-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Komentar</button>
+                <button class="post-action-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>Bagikan</button>
+                <button class="post-action-btn save-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>Simpan</button>
+              </div>
+            </div>
+
+            <!-- POST 2 -->
+            <div class="post-card">
+              <div class="post-head">
+                <div class="post-who">
+                  <div class="avatar-circle" style="background:linear-gradient(135deg,#2E7D5B,#134731);">YA</div>
+                  <div class="lines">
+                    <div class="nm">Yusuf Abdurrahman <span>· Alumni '16</span></div>
+                    <div class="role">Growth at ILMI | Business Development</div>
+                    <div class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 jam yang lalu</div>
+                  </div>
+                </div>
+                <button class="post-menu-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>
+              </div>
+              <p class="post-body-text">Kabar gembira! Tim kami baru saja merilis produk pertanian digital terbaru yang membantu petani dalam pengelolaan lahan secara lebih efisien. Bangga bisa membawa inovasi yang berdampak untuk Indonesia! 🚀</p>
+              <div class="post-reaction-row">
+                <div class="reaction-chips">
+                  <div class="chip-icons"><span>👍</span><span>🎉</span></div>
+                  <span>Anda, Arkhana P., dan 98 lainnya</span>
+                </div>
+                <span>6 Komentar · 5 Dibagikan</span>
+              </div>
+              <div class="post-actions">
+                <button class="post-action-btn like-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.3a2 2 0 0 0 2-1.7l1.4-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg><span>Suka</span></button>
+                <button class="post-action-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>Komentar</button>
+                <button class="post-action-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"/></svg>Bagikan</button>
+                <button class="post-action-btn save-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>Simpan</button>
+              </div>
+            </div>
+
+            <!-- EVENT HISTORY -->
+            <div class="panel-card">
+              <div class="panel-header">
+                <div><h3>Riwayat Event Anda</h3><div class="sub">Acara yang pernah Anda ikuti</div></div>
+                <a href="#" class="btn-ghost-sm" data-tab-trigger="acara">Lihat Semua
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+              <div class="history-row">
+                <div class="history-thumb" style="background:linear-gradient(135deg,#1656B6,#0D2875);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></div>
+                <div class="history-info">
+                  <h5>IPB Alumni Leadership Forum 2026</h5>
+                  <div class="meta">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 24 Mei 2026</span>
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bogor · Offline</span>
+                  </div>
+                </div>
+                <div class="history-right">
+                  <span class="status-badge hadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hadir</span>
+                  <button class="btn btn-outline btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Sertifikat</button>
+                </div>
+              </div>
+              <div class="history-row">
+                <div class="history-thumb" style="background:linear-gradient(135deg,#C97A1F,#7A4A0F);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <div class="history-info">
+                  <h5>Reuni Akbar Alumni IPB 2025</h5>
+                  <div class="meta">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 14 Jun 2025</span>
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kampus IPB</span>
+                  </div>
+                </div>
+                <div class="history-right">
+                  <span class="status-badge hadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hadir</span>
+                  <button class="btn btn-outline btn-sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Sertifikat</button>
+                </div>
+              </div>
+              <div class="history-row">
+                <div class="history-thumb" style="background:linear-gradient(135deg,#2E7D5B,#134731);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+                <div class="history-info">
+                  <h5>Webinar Karier: Persiapan Interview</h5>
+                  <div class="meta">
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 24 Mei 2025</span>
+                    <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Online</span>
+                  </div>
+                </div>
+                <div class="history-right">
+                  <span class="status-badge absen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Tidak Hadir</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- JOB RECOMMENDATIONS -->
+            <div class="panel-card">
+              <div class="panel-header">
+                <div><h3>Lowongan Untuk Anda</h3><div class="sub">Direkomendasikan berdasarkan profil Anda</div></div>
+                <a href="#" class="btn-ghost-sm" data-tab-trigger="lowongan">Lihat Semua
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              </div>
+              <div class="job-row-scroll">
+                <div class="job-mini">
+                  <div class="job-mini-top">
+                    <div class="company-badge" style="background:linear-gradient(135deg,#1656B6,#0D2875);">GT</div>
+                    <button class="bookmark-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+                  </div>
+                  <h5>Software Engineer</h5>
+                  <div class="co">GoTo · Jakarta, Indonesia</div>
+                  <div class="meta-row"><span class="job-tag">Full-time</span><span class="job-tag">Hybrid</span></div>
+                  <div class="salary">Rp12 - 18 juta/bulan</div>
+                </div>
+                <div class="job-mini">
+                  <div class="job-mini-top">
+                    <div class="company-badge" style="background:linear-gradient(135deg,#2E7D5B,#134731);">UN</div>
+                    <button class="bookmark-btn saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+                  </div>
+                  <h5>Data Analyst</h5>
+                  <div class="co">Unilever Indonesia · Tangerang</div>
+                  <div class="meta-row"><span class="job-tag">Full-time</span><span class="job-tag">On-site</span></div>
+                  <div class="salary">Rp10 - 16 juta/bulan</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ==== RIGHT SIDEBAR ==== -->
+          <div class="side-col">
+            <div class="panel-card">
+              <div class="panel-header"><div><h3>Progress Tracer Study</h3></div></div>
+              <div class="progress-ring-wrap">
+                <div class="progress-ring">
+                  <svg viewBox="0 0 80 80">
+                    <circle cx="40" cy="40" r="34" fill="none" stroke="#EEF1F9" stroke-width="9"/>
+                    <circle cx="40" cy="40" r="34" fill="none" stroke="#1656B6" stroke-width="9" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="53.4"/>
+                  </svg>
+                  <div class="pct">75%</div>
+                </div>
+                <div class="progress-detail">
+                  <p class="strong">3 dari 4 kuesioner</p>
+                  <p>telah Anda selesaikan.</p>
+                </div>
+              </div>
+              <button class="btn btn-navy btn-block btn-sm" style="margin-top:16px;" data-tab-trigger="tracer">Lanjutkan Pengisian</button>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-header">
+                <div><h3>Acara Mendatang</h3></div>
+                <a href="#" class="btn-ghost-sm" data-tab-trigger="acara">Semua</a>
+              </div>
+              <div class="upcoming-item">
+                <div class="date-box"><span class="d">21</span><span class="m">Mei</span></div>
+                <div><h5>Alumni Networking Night Jakarta</h5><div class="t">Jakarta Selatan · 18.00 WIB</div></div>
+              </div>
+              <div class="upcoming-item">
+                <div class="date-box"><span class="d">24</span><span class="m">Mei</span></div>
+                <div><h5>Webinar Karier: Persiapan Interview</h5><div class="t">Online (Zoom)</div></div>
+              </div>
+              <div class="upcoming-item">
+                <div class="date-box"><span class="d">07</span><span class="m">Jun</span></div>
+                <div><h5>Mentoring: Campus to Corporate</h5><div class="t">Online (Zoom)</div></div>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <div class="panel-header">
+                <div><h3>Alumni yang Mungkin Anda Kenal</h3></div>
+                <a href="#" class="btn-ghost-sm" data-tab-trigger="network">Lihat semua</a>
+              </div>
+              <div class="know-item">
+                <div class="avatar-circle" style="background:linear-gradient(135deg,#1656B6,#0D2875);">HA</div>
+                <div class="info"><h5>Hanafi Anshary Nasution</h5><p>Marketing &amp; Branding Strategist · Alumni '19</p></div>
+                <button class="btn btn-outline connect-btn">Terhubung</button>
+              </div>
+              <div class="know-item">
+                <div class="avatar-circle" style="background:linear-gradient(135deg,#E14A4A,#8B1F1F);">AP</div>
+                <div class="info"><h5>Arkhana Prasetyo A.</h5><p>Mahasiswa IPB · Alumni '21</p></div>
+                <button class="btn btn-outline connect-btn">Terhubung</button>
+              </div>
+              <div class="know-item">
+                <div class="avatar-circle" style="background:linear-gradient(135deg,#2E7D5B,#134731);">IM</div>
+                <div class="info"><h5>Isyaq Muhaqqiq</h5><p>Corporate Secretary · Alumni '20</p></div>
+                <button class="btn btn-outline connect-btn">Terhubung</button>
+              </div>
+              <div class="know-item">
+                <div class="avatar-circle" style="background:linear-gradient(135deg,#FFC107,#E8A800);">LT</div>
+                <div class="info"><h5>Lyndu Tridara A.</h5><p>OPP Business Enabler · Alumni '22</p></div>
+                <button class="btn btn-outline connect-btn">Terhubung</button>
+              </div>
+            </div>
+
+            <div class="mobile-promo-card">
+              <h4>IPB Connect Kini di Mobile!</h4>
+              <p>Akses jejaring, acara, lowongan, dan diskusi kapan saja di mana saja.</p>
+              <div class="mp-badges">
+                <a href="#" class="mp-badge"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff;"><path d="M3.6 2.6c-.3.3-.5.8-.5 1.4v16c0 .6.2 1.1.5 1.4l.1.1L13 12v-.1L3.7 2.5l-.1.1z"/><path d="M16.2 15.2L13 12l3.2-3.2 3.9 2.2c1.1.6 1.1 1.6 0 2.2l-3.9 2.2z" opacity=".7"/><path d="M16.2 15.2L13 12 3.6 21.4c.4.4 1 .4 1.7 0l10.9-6.2z"/><path d="M16.2 8.8L5.3 2.6c-.7-.4-1.3-.4-1.7 0L13 12l3.2-3.2z" opacity=".85"/></svg><div><span class="s1">TEMUKAN DI</span><span class="s2">Google Play</span></div></a>
+                <a href="#" class="mp-badge"><svg viewBox="0 0 24 24" fill="currentColor" style="color:#fff;"><path d="M17.6 12.3c0-2.9 2.3-4.2 2.4-4.3-1.3-1.9-3.4-2.2-4.1-2.2-1.7-.2-3.4 1-4.3 1-.9 0-2.2-1-3.7-1-1.9 0-3.7 1.1-4.7 2.8-2 3.5-.5 8.6 1.4 11.4 1 1.4 2.1 2.9 3.6 2.9 1.4-.1 2-.9 3.7-.9 1.7 0 2.2.9 3.7.9 1.5 0 2.5-1.4 3.5-2.8 1.1-1.6 1.5-3.1 1.5-3.2-.1 0-3-1.1-3-4.6zM14.9 3.8c.8-1 1.4-2.4 1.2-3.8-1.2.1-2.6.8-3.4 1.8-.7.8-1.4 2.2-1.2 3.6 1.3.1 2.6-.7 3.4-1.6z"/></svg><div><span class="s1">Download di</span><span class="s2">App Store</span></div></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TAB: MY NETWORK -->
+      <!-- ======================================================= -->
+      <section class="tab-panel" id="tab-network">
+        <div class="page-head">
+          <h2>My Network</h2>
+          <p>Satu Almamater, Banyak Peluang. Bangun relasi dari kampus untuk karier dan kolaborasi.</p>
+        </div>
+        <div class="pill-stats">
+          <div class="pill-stat"><div class="n">128</div><div class="l">Koneksi Aktif</div></div>
+          <div class="pill-stat"><div class="n">6</div><div class="l">Permintaan Baru</div></div>
+          <div class="pill-stat"><div class="n">24</div><div class="l">Satu Bidang</div></div>
+          <div class="pill-stat"><div class="n">18</div><div class="l">Satu Kota</div></div>
+        </div>
+        <div class="page-head-row">
+          <h3 style="font-size:16px;font-weight:700;">Alumni yang Mungkin Anda Kenal</h3>
+        </div>
+        <div class="network-grid">
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#1656B6,#0D2875);">FP</div><h5>Farhan Pratama</h5><p class="role">Software Engineer di Gojek</p><p class="mutual">12 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#E14A4A,#8B1F1F);">DL</div><h5>Dinda Lestari</h5><p class="role">Brand Manager di Unilever</p><p class="mutual">8 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#2E7D5B,#134731);">BW</div><h5>Bagas Wirawan</h5><p class="role">Business Development · East Ventures</p><p class="mutual">5 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#FFC107,#E8A800);">AP</div><h5>Amanda Putri</h5><p class="role">Data Analyst di Tokopedia</p><p class="mutual">8 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#8B5CF6,#4C1D95);">AH</div><h5>Arief Hidayat</h5><p class="role">Researcher · BRIN</p><p class="mutual">15 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#0EA5A5,#0B6E6E);">VP</div><h5>Vania Putri</h5><p class="role">Nutritionist · RS Mayapada</p><p class="mutual">6 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#1656B6,#0D2875);">MI</div><h5>Muhammad Iqbal</h5><p class="role">Project Engineer · WIKA</p><p class="mutual">9 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+          <div class="network-card"><div class="av" style="background:linear-gradient(135deg,#C97A1F,#7A4A0F);">SN</div><h5>Siti Nurhaliza</h5><p class="role">Product Analyst · Agribisnis</p><p class="mutual">4 koneksi bersama</p><button class="btn btn-outline connect-btn">Terhubung</button></div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TAB: ACARA -->
+      <!-- ======================================================= -->
+      <section class="tab-panel" id="tab-acara">
+        <div class="page-head">
+          <h2>Acara Alumni</h2>
+          <p>Bertemu, berbagi, dan bertumbuh bersama alumni IPB.</p>
+        </div>
+        <div class="filter-chip-row">
+          <button class="chip active" data-acara-sub="upcoming">Akan Datang</button>
+          <button class="chip" data-acara-sub="history">Riwayat Saya</button>
+        </div>
+
+        <div id="acara-upcoming">
+          <div class="card-grid3">
+            <div class="evt-card">
+              <div class="evt-thumb" style="background:linear-gradient(135deg,#1656B6,#0D2875);"><span class="evt-tag">NETWORKING</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></div>
+              <div class="evt-body">
+                <h4>Alumni Networking Night Jakarta</h4>
+                <div class="evt-meta">
+                  <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 21 Mei 2026</div>
+                  <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Jakarta Selatan</div>
+                </div>
+                <div class="evt-footer"><span style="font-size:11px;color:var(--muted-2);">128 akan hadir</span><button class="btn btn-navy btn-sm">Daftar</button></div>
+              </div>
+            </div>
+            <div class="evt-card">
+              <div class="evt-thumb" style="background:linear-gradient(135deg,#2E7D5B,#134731);"><span class="evt-tag">KARIER</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+              <div class="evt-body">
+                <h4>Webinar Karier: Persiapan Interview</h4>
+                <div class="evt-meta">
+                  <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 24 Mei 2026</div>
+                  <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Online (Zoom)</div>
+                </div>
+                <div class="evt-footer"><span style="font-size:11px;color:var(--muted-2);">342 akan hadir</span><button class="btn btn-navy btn-sm">Daftar</button></div>
+              </div>
+            </div>
+            <div class="evt-card">
+              <div class="evt-thumb" style="background:linear-gradient(135deg,#C97A1F,#7A4A0F);"><span class="evt-tag">MENTORING</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="evt-body">
+                <h4>Mentoring Series: Campus to Corporate</h4>
+                <div class="evt-meta">
+                  <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg> 07 Jun 2026</div>
+                  <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Online (Zoom)</div>
+                </div>
+                <div class="evt-footer"><span style="font-size:11px;color:var(--muted-2);">214 akan hadir</span><button class="btn btn-navy btn-sm">Daftar</button></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="acara-history" style="display:none;">
+          <div class="panel-card">
+            <div class="history-row">
+              <div class="history-thumb" style="background:linear-gradient(135deg,#1656B6,#0D2875);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></div>
+              <div class="history-info"><h5>IPB Alumni Leadership Forum 2026</h5><div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> 24 Mei 2026</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bogor · Offline</span></div></div>
+              <div class="history-right"><span class="status-badge hadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hadir</span><button class="btn btn-outline btn-sm">Sertifikat</button></div>
+            </div>
+            <div class="history-row">
+              <div class="history-thumb" style="background:linear-gradient(135deg,#C97A1F,#7A4A0F);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+              <div class="history-info"><h5>Reuni Akbar Alumni IPB 2025</h5><div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> 14 Jun 2025</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Kampus IPB</span></div></div>
+              <div class="history-right"><span class="status-badge hadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hadir</span><button class="btn btn-outline btn-sm">Sertifikat</button></div>
+            </div>
+            <div class="history-row">
+              <div class="history-thumb" style="background:linear-gradient(135deg,#2E7D5B,#134731);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg></div>
+              <div class="history-info"><h5>Webinar Karier: Persiapan Interview</h5><div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> 24 Mei 2025</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Online</span></div></div>
+              <div class="history-right"><span class="status-badge absen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> Tidak Hadir</span></div>
+            </div>
+            <div class="history-row">
+              <div class="history-thumb" style="background:linear-gradient(135deg,#8B5CF6,#4C1D95);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+              <div class="history-info"><h5>Business Matching Agritech &amp; Sustainability</h5><div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> 14 Mar 2025</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Bogor</span></div></div>
+              <div class="history-right"><span class="status-badge hadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hadir</span><button class="btn btn-outline btn-sm">Sertifikat</button></div>
+            </div>
+            <div class="history-row">
+              <div class="history-thumb" style="background:linear-gradient(135deg,#FFC107,#E8A800);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg></div>
+              <div class="history-info"><h5>Talkshow: Future of Work</h5><div class="meta"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> 23 Jan 2025</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Tangerang</span></div></div>
+              <div class="history-right"><span class="status-badge hadir"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Hadir</span><button class="btn btn-outline btn-sm">Sertifikat</button></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TAB: LOWONGAN -->
+      <!-- ======================================================= -->
+      <section class="tab-panel" id="tab-lowongan">
+        <div class="page-head">
+          <h2>Lowongan Kerja</h2>
+          <p>Temukan peluang karier terbaik dari perusahaan terpercaya.</p>
+        </div>
+        <div class="filter-chip-row">
+          <button class="chip active">Semua</button>
+          <button class="chip">Full-time</button>
+          <button class="chip">Part-time</button>
+          <button class="chip">Remote</button>
+          <button class="chip">Magang</button>
+        </div>
+        <div class="job-row-scroll" style="grid-template-columns:repeat(3,1fr);">
+          <div class="job-mini">
+            <div class="job-mini-top"><div class="company-badge" style="background:linear-gradient(135deg,#1656B6,#0D2875);">GT</div><button class="bookmark-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button></div>
+            <h5>Software Engineer</h5><div class="co">GoTo · Jakarta</div>
+            <div class="meta-row"><span class="job-tag">Full-time</span><span class="job-tag">Hybrid</span></div>
+            <div class="salary">Rp12 - 18 juta/bulan</div>
+            <button class="btn btn-navy btn-sm btn-block" style="margin-top:14px;">Lihat Detail</button>
+          </div>
+          <div class="job-mini">
+            <div class="job-mini-top"><div class="company-badge" style="background:linear-gradient(135deg,#2E7D5B,#134731);">UN</div><button class="bookmark-btn saved"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button></div>
+            <h5>Data Analyst</h5><div class="co">Unilever Indonesia · Tangerang</div>
+            <div class="meta-row"><span class="job-tag">Full-time</span><span class="job-tag">On-site</span></div>
+            <div class="salary">Rp10 - 16 juta/bulan</div>
+            <button class="btn btn-navy btn-sm btn-block" style="margin-top:14px;">Lihat Detail</button>
+          </div>
+          <div class="job-mini">
+            <div class="job-mini-top"><div class="company-badge" style="background:linear-gradient(135deg,#8B5CF6,#4C1D95);">AT</div><button class="bookmark-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button></div>
+            <h5>Marketing Specialist</h5><div class="co">AgroTech Indonesia · Bogor</div>
+            <div class="meta-row"><span class="job-tag">Full-time</span><span class="job-tag">Hybrid</span></div>
+            <div class="salary">Rp8 - 12 juta/bulan</div>
+            <button class="btn btn-navy btn-sm btn-block" style="margin-top:14px;">Lihat Detail</button>
+          </div>
+          <div class="job-mini">
+            <div class="job-mini-top"><div class="company-badge" style="background:linear-gradient(135deg,#C97A1F,#7A4A0F);">BR</div><button class="bookmark-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button></div>
+            <h5>Research Associate</h5><div class="co">BRIN · Jakarta</div>
+            <div class="meta-row"><span class="job-tag">Kontrak</span><span class="job-tag">On-site</span></div>
+            <div class="salary">Rp7 - 11 juta/bulan</div>
+            <button class="btn btn-navy btn-sm btn-block" style="margin-top:14px;">Lihat Detail</button>
+          </div>
+          <div class="job-mini">
+            <div class="job-mini-top"><div class="company-badge" style="background:linear-gradient(135deg,#0EA5A5,#0B6E6E);">TK</div><button class="bookmark-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button></div>
+            <h5>Business Development</h5><div class="co">Tokopedia · Jakarta</div>
+            <div class="meta-row"><span class="job-tag">Full-time</span><span class="job-tag">Remote</span></div>
+            <div class="salary">Rp11 - 17 juta/bulan</div>
+            <button class="btn btn-navy btn-sm btn-block" style="margin-top:14px;">Lihat Detail</button>
+          </div>
+          <div class="job-mini">
+            <div class="job-mini-top"><div class="company-badge" style="background:linear-gradient(135deg,#E14A4A,#8B1F1F);">NF</div><button class="bookmark-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button></div>
+            <h5>Business Development Executive</h5><div class="co">PT Nutrifood Indonesia · Bogor</div>
+            <div class="meta-row"><span class="job-tag">Full-time</span><span class="job-tag">Hybrid</span></div>
+            <div class="salary">Rp9 - 14 juta/bulan</div>
+            <button class="btn btn-navy btn-sm btn-block" style="margin-top:14px;">Lihat Detail</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TAB: ALUMNIDEV -->
+      <!-- ======================================================= -->
+      <section class="tab-panel" id="tab-alumnidev">
+        <div class="page-head">
+          <h2>AlumniDev</h2>
+          <p>Alumni Development &amp; Engagement Hub — pusat program pengembangan, kontribusi, dan kolaborasi alumni.</p>
+        </div>
+        <div class="card-grid3" style="grid-template-columns:repeat(2,1fr);">
+          <div class="program-card">
+            <div class="program-top" style="background:var(--blue);"></div>
+            <div class="program-body">
+              <span class="program-status" style="background:var(--green-100);color:var(--green);">Pendaftaran Dibuka</span>
+              <h4>IPB Alumni Leadership Program 2026</h4>
+              <div class="org">Himpunan Alumni IPB</div>
+              <p class="desc">Program pengembangan kepemimpinan bagi alumni muda untuk memperkuat kontribusi di dunia profesional dan masyarakat.</p>
+              <div class="program-meta">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> Ags - Nov 2026</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg> 100 Alumni</span>
+              </div>
+              <button class="btn btn-navy btn-block">Daftar Sekarang</button>
+            </div>
+          </div>
+          <div class="program-card">
+            <div class="program-top" style="background:var(--gold);"></div>
+            <div class="program-body">
+              <span class="program-status" style="background:#FFF4D6;color:var(--gold-dark);">Menunggu Verifikasi</span>
+              <h4>Alumni Business Incubation Batch 8</h4>
+              <div class="org">IPB University</div>
+              <p class="desc">Pendampingan bisnis intensif bagi alumni yang memiliki usaha rintisan berpotensi tumbuh.</p>
+              <div class="program-meta">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> Jul - Nov 2026</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg> 80 Alumni</span>
+              </div>
+              <button class="btn btn-outline btn-block">Lihat Progres</button>
+            </div>
+          </div>
+          <div class="program-card">
+            <div class="program-top" style="background:var(--green);"></div>
+            <div class="program-body">
+              <span class="program-status" style="background:var(--blue-100);color:var(--blue);">Segera Dibuka</span>
+              <h4>Alumni Mengabdi untuk Negeri</h4>
+              <div class="org">Himpunan Alumni IPB</div>
+              <p class="desc">Program pengabdian masyarakat bersama alumni di berbagai daerah Indonesia.</p>
+              <div class="program-meta">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> Okt - Des 2026</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg> 150 Alumni</span>
+              </div>
+              <button class="btn btn-outline btn-block">Ajukan Minat</button>
+            </div>
+          </div>
+          <div class="program-card">
+            <div class="program-top" style="background:#8B5CF6;"></div>
+            <div class="program-body">
+              <span class="program-status" style="background:var(--green-100);color:var(--green);">Pendaftaran Dibuka</span>
+              <h4>Data &amp; AI for Impact Program</h4>
+              <div class="org">IPB University</div>
+              <p class="desc">Pelatihan dan praktik data untuk alumni di era transformasi digital.</p>
+              <div class="program-meta">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/></svg> Ags - Okt 2026</span>
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v2"/></svg> 150 Alumni</span>
+              </div>
+              <button class="btn btn-navy btn-block">Daftar Sekarang</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TAB: TRACER STUDY -->
+      <!-- ======================================================= -->
+      <section class="tab-panel" id="tab-tracer">
+        <div class="page-head">
+          <h2>Tracer Study</h2>
+          <p>Bantu kami meningkatkan kualitas pendidikan dan layanan kampus melalui partisipasi Anda.</p>
+        </div>
+        <div class="panel-card" style="margin-bottom:20px;">
+          <div class="tracer-overview">
+            <div class="tracer-ring">
+              <svg viewBox="0 0 110 110">
+                <circle cx="55" cy="55" r="46" fill="none" stroke="#EEF1F9" stroke-width="12"/>
+                <circle cx="55" cy="55" r="46" fill="none" stroke="#1656B6" stroke-width="12" stroke-linecap="round" stroke-dasharray="289" stroke-dashoffset="72"/>
+              </svg>
+              <div class="pct"><span class="n">75%</span><span class="l">SELESAI</span></div>
+            </div>
+            <div>
+              <h3 style="font-size:16px;">Overall Progress Pengisian</h3>
+              <p style="margin-top:6px;font-size:13px;">Anda telah menyelesaikan 3 dari 4 kuesioner tracer study. Selesaikan kuesioner terakhir sebelum tenggat waktu berikut.</p>
+              <div style="margin-top:12px;display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--red);font-weight:600;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Batas waktu: 31 Desember 2026
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel-card">
+          <div class="panel-header"><div><h3>Kuesioner Tracer Study</h3><div class="sub">Pilih kuesioner sesuai jenjang dan status Anda</div></div></div>
+          <div class="tracer-item">
+            <div class="ic" style="background:var(--green-100);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="info"><h5>Diploma, Sarjana Terapan, Sarjana, &amp; PPDH</h5><div class="d">Selesai diisi · 20 Sep 2024</div></div>
+            <span class="status-badge hadir">Selesai</span>
+          </div>
+          <div class="tracer-item">
+            <div class="ic" style="background:var(--green-100);color:var(--green);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="info"><h5>Pascasarjana &amp; Profesi Program Insinyur</h5><div class="d">Selesai diisi · 15 Sep 2024</div></div>
+            <span class="status-badge hadir">Selesai</span>
+          </div>
+          <div class="tracer-item">
+            <div class="ic" style="background:#FFF4D6;color:var(--gold-dark);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="info"><h5>Penilaian Lulusan (Pimpinan/Atasan/Pengguna Lulusan)</h5><div class="d">Belum diisi · Tenggat 45 hari lagi</div></div>
+            <button class="btn btn-navy btn-sm">Isi Sekarang</button>
+          </div>
+          <div class="tracer-item">
+            <div class="ic" style="background:var(--blue-100);color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg></div>
+            <div class="info"><h5>Riwayat Pengisian</h5><div class="d">Lihat semua riwayat pengisian kuesioner Anda</div></div>
+            <button class="btn btn-outline btn-sm">Lihat</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================= -->
+      <!-- TAB: PROFIL SAYA -->
+      <!-- ======================================================= -->
+      <section class="tab-panel" id="tab-profil">
+        <div class="profile-card-main" style="margin-bottom:22px;">
+          <div class="profile-cover"></div>
+          <div class="profile-card-body">
+            <div class="profile-avatar-lg">AP</div>
+            <div class="profile-name-row">
+              <div>
+                <h2>Andi Pratama <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" style="width:17px;height:17px;color:var(--green);display:inline;vertical-align:middle;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></h2>
+                <div class="role">Product Manager di Gojek · Alumni IPB 2020, Manajemen</div>
+                <div class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Jakarta, Indonesia</div>
+              </div>
+              <button class="btn btn-outline">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.1 2.1 0 0 1 3 3L12 15l-4 1 1-4z"/></svg>
+                Edit Profil
+              </button>
+            </div>
+            <div class="profile-stats-row">
+              <div><div class="n">128</div><div class="l">Koneksi</div></div>
+              <div><div class="n">34</div><div class="l">Satu Angkatan</div></div>
+              <div><div class="n">56</div><div class="l">Satu Fakultas</div></div>
+              <div><div class="n">8</div><div class="l">Program Diikuti</div></div>
+              <div><div class="n">4</div><div class="l">Mentoring</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-grid">
+          <div class="feed-col">
+            <div class="panel-card">
+              <div class="panel-header"><div><h3>Tentang Saya</h3></div></div>
+              <p style="font-size:13.5px;">Saya adalah product manager yang berfokus pada pengembangan produk digital dan berdampak bagi pengguna. Tertarik dengan inovasi, teknologi, dan kolaborasi lintas bidang untuk menciptakan solusi yang berkelanjutan.</p>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header"><div><h3>Pengalaman Kerja</h3></div></div>
+              <div class="tracer-item">
+                <div class="ic" style="background:var(--blue-100);color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+                <div class="info"><h5>Product Manager · Gojek</h5><div class="d">Jan 2022 — Sekarang · 2 thn 4 bln</div></div>
+              </div>
+              <div class="tracer-item">
+                <div class="ic" style="background:var(--bg);color:var(--muted);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+                <div class="info"><h5>Associate Product Manager · Traveloka</h5><div class="d">Jun 2020 — Des 2021 · 1 thn 7 bln</div></div>
+              </div>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header"><div><h3>Keahlian</h3></div></div>
+              <span class="tag-chip">Product Management</span>
+              <span class="tag-chip">Strategy</span>
+              <span class="tag-chip">Data Analysis</span>
+              <span class="tag-chip">User Research</span>
+              <span class="tag-chip">Agile</span>
+              <span class="tag-chip">Leadership</span>
+            </div>
+          </div>
+          <div class="side-col">
+            <div class="panel-card">
+              <div class="panel-header"><div><h3>Pendidikan</h3></div></div>
+              <div class="tracer-item">
+                <div class="ic" style="background:var(--blue-100);color:var(--blue);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+                <div class="info"><h5>Institut Pertanian Bogor (IPB)</h5><div class="d">Manajemen · 2016 - 2020</div></div>
+              </div>
+            </div>
+            <div class="panel-card">
+              <div class="panel-header"><div><h3>Verifikasi Akun</h3></div></div>
+              <div style="display:flex;align-items:center;gap:12px;">
+                <div style="width:44px;height:44px;border-radius:12px;background:var(--green-100);color:var(--green);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <p style="font-size:12.5px;">Akun Anda telah terverifikasi sebagai alumni IPB.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  // ---- tab switching ----
+  const sbLinks = document.querySelectorAll('.sb-link');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  function activateTab(tabName){
+    tabPanels.forEach(p => p.classList.toggle('active', p.id === 'tab-' + tabName));
+    sbLinks.forEach(l => l.classList.toggle('active', l.dataset.tab === tabName));
+    document.querySelector('.content-area').scrollIntoView({behavior:'instant', block:'start'});
+    window.scrollTo({top:0, behavior:'smooth'});
+    closeSidebarMobile();
+  }
+  sbLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateTab(link.dataset.tab);
+    });
+  });
+  document.querySelectorAll('[data-tab-trigger]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      activateTab(el.dataset.tabTrigger);
+    });
+  });
+  document.querySelectorAll('.stat-card[data-tab-trigger]').forEach(el=>{
+    el.addEventListener('click', ()=> activateTab(el.dataset.tabTrigger));
+  });
+
+  // ---- acara sub-tab ----
+  document.querySelectorAll('[data-acara-sub]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('[data-acara-sub]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const sub = btn.dataset.acaraSub;
+      document.getElementById('acara-upcoming').style.display = sub === 'upcoming' ? '' : 'none';
+      document.getElementById('acara-history').style.display = sub === 'history' ? '' : 'none';
+    });
+  });
+
+  // ---- generic chip active toggle (lowongan filters) ----
+  document.querySelectorAll('.filter-chip-row .chip').forEach(chip => {
+    if (chip.hasAttribute('data-acara-sub')) return;
+    chip.addEventListener('click', () => {
+      chip.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  // ---- mobile sidebar ----
+  const sidebar = document.getElementById('sidebar');
+  const sbToggle = document.getElementById('sbToggle');
+  const sbClose = document.getElementById('sbClose');
+  const overlay = document.getElementById('sidebarOverlay');
+  function openSidebarMobile(){ sidebar.classList.add('open'); overlay.classList.add('show'); }
+  function closeSidebarMobile(){ sidebar.classList.remove('open'); overlay.classList.remove('show'); }
+  sbToggle?.addEventListener('click', openSidebarMobile);
+  sbClose?.addEventListener('click', closeSidebarMobile);
+  overlay?.addEventListener('click', closeSidebarMobile);
+
+  // ---- dropdowns ----
+  function setupDropdown(btnId, panelId){
+    const btn = document.getElementById(btnId);
+    const panel = document.getElementById(panelId);
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = panel.classList.contains('open');
+      document.querySelectorAll('.dropdown-panel.open').forEach(p => p.classList.remove('open'));
+      if(!isOpen) panel.classList.add('open');
+    });
+  }
+  setupDropdown('notifBtn','notifPanel');
+  setupDropdown('mailBtn','mailPanel');
+  setupDropdown('profileBtn','profilePanel');
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.dropdown-panel.open').forEach(p => p.classList.remove('open'));
+  });
+  document.querySelectorAll('.dropdown-panel').forEach(p => p.addEventListener('click', e => e.stopPropagation()));
+
+  // ---- like / save toggles ----
+  document.querySelectorAll('.like-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('liked');
+      const span = btn.querySelector('span');
+      span.textContent = btn.classList.contains('liked') ? 'Disukai' : 'Suka';
+    });
+  });
+  document.querySelectorAll('.save-btn').forEach(btn => btn.addEventListener('click', () => btn.classList.toggle('saved')));
+  document.querySelectorAll('.bookmark-btn').forEach(btn => btn.addEventListener('click', () => btn.classList.toggle('saved')));
+
+  // ---- connect button toggle ----
+  document.querySelectorAll('.connect-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const connected = btn.classList.toggle('btn-connected');
+      btn.textContent = connected ? 'Diminta ✓' : 'Terhubung';
+    });
+  });
+</script>
+</body>
+</html>
