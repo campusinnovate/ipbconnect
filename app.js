@@ -1,0 +1,12 @@
+document.addEventListener('DOMContentLoaded',()=>{
+  const toast=document.createElement('div');toast.className='toast';document.body.appendChild(toast);let timer;
+  window.notify=(message)=>{toast.textContent=message;toast.classList.add('show');clearTimeout(timer);timer=setTimeout(()=>toast.classList.remove('show'),2800)};
+  document.querySelectorAll('[data-toast]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();notify(el.dataset.toast)}));
+  document.querySelectorAll('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{const group=btn.closest('.filterbar');group.querySelectorAll('button').forEach(item=>item.classList.remove('active'));btn.classList.add('active');const value=btn.dataset.filter;document.querySelectorAll('[data-category]').forEach(card=>{card.style.display=value==='all'||card.dataset.category===value?'':'none'});}));
+  document.querySelectorAll('[data-connect]').forEach(btn=>btn.addEventListener('click',()=>{const connected=btn.dataset.connected==='true';btn.dataset.connected=String(!connected);btn.textContent=connected?'Terhubung':'Diminta';btn.classList.toggle('btn-soft',!connected);notify(connected?'Permintaan dibatalkan':'Permintaan koneksi dikirim')}));
+  document.querySelectorAll('[data-save]').forEach(btn=>btn.addEventListener('click',()=>{const saved=btn.dataset.saved==='true';btn.dataset.saved=String(!saved);btn.textContent=saved?'Simpan':'Tersimpan';notify(saved?'Lowongan dihapus dari simpanan':'Lowongan disimpan')}));
+  document.querySelectorAll('[data-modal]').forEach(btn=>btn.addEventListener('click',()=>document.getElementById(btn.dataset.modal)?.classList.add('open')));
+  document.querySelectorAll('[data-close-modal]').forEach(btn=>btn.addEventListener('click',()=>btn.closest('.modal-backdrop').classList.remove('open')));
+  document.querySelectorAll('.modal-backdrop').forEach(backdrop=>backdrop.addEventListener('click',e=>{if(e.target===backdrop)backdrop.classList.remove('open')}));
+  document.querySelectorAll('[data-submit]').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();notify(form.dataset.submit);setTimeout(()=>{if(form.dataset.redirect)location.href=form.dataset.redirect},650)}));
+});
