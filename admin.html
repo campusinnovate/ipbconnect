@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Jadwal | IPB Connect</title>
+  <link rel="stylesheet" href="app.css">
+</head>
+<body>
+  <header class="topnav">
+    <div class="container admin-nav-inner">
+      <a class="brand" href="dashboard.html"><span class="brand-mark">✦</span>IPB Connect</a>
+      <nav class="navlinks">
+        <a href="network.html">Network</a><a href="events.html">Acara</a><a href="jobs.html">Karier</a><a href="alumnidev.html">AlumniDev</a><a href="tracer.html">Tracer Study</a>
+      </nav>
+      <div class="nav-actions"><a class="btn btn-outline btn-sm" href="events.html">Kembali ke acara</a><a class="btn btn-gold btn-sm" href="profile.html">Profil Andi</a></div>
+    </div>
+  </header>
+
+  <main class="page admin-page">
+    <div class="container">
+      <div class="page-head">
+        <div><span class="eyebrow"><i></i> Workspace admin</span><h1>Atur ritme komunitas dengan lebih rapi.</h1><p>Kelola jadwal acara, kapasitas peserta, dan pengingat dalam satu tampilan.</p></div>
+        <button class="btn btn-primary" data-modal="schedule-modal">＋ Tambah jadwal</button>
+      </div>
+
+      <section class="admin-stats" aria-label="Ringkasan jadwal">
+        <article class="admin-stat"><span class="admin-stat-icon blue">▦</span><div><strong>24</strong><span>Acara bulan ini</span><small>+18% dari bulan lalu</small></div></article>
+        <article class="admin-stat"><span class="admin-stat-icon gold">◷</span><div><strong>08</strong><span>Menunggu konfirmasi</span><small class="warning-text">Perlu ditinjau hari ini</small></div></article>
+        <article class="admin-stat"><span class="admin-stat-icon green">✓</span><div><strong>86%</strong><span>Rata-rata kehadiran</span><small>+6% dari bulan lalu</small></div></article>
+        <article class="admin-stat"><span class="admin-stat-icon navy">↗</span><div><strong>1.248</strong><span>Total pendaftar</span><small>Lintas 12 acara aktif</small></div></article>
+      </section>
+
+      <div class="admin-layout">
+        <section class="admin-panel calendar-panel">
+          <div class="panel-heading"><div><span class="panel-kicker">Kalender program</span><h2>Mei 2026</h2></div><div class="calendar-actions"><button class="icon-action" data-toast="Bulan sebelumnya">‹</button><button class="icon-action" data-toast="Bulan berikutnya">›</button></div></div>
+          <div class="calendar-weekdays"><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span></div>
+          <div class="calendar-grid">
+            <span class="calendar-day muted-day">27</span><span class="calendar-day muted-day">28</span><span class="calendar-day muted-day">29</span><span class="calendar-day muted-day">30</span><span class="calendar-day">1</span><span class="calendar-day">2</span><span class="calendar-day">3</span>
+            <span class="calendar-day">4</span><span class="calendar-day">5</span><span class="calendar-day">6</span><span class="calendar-day">7</span><span class="calendar-day has-event">8<i></i></span><span class="calendar-day">9</span><span class="calendar-day">10</span>
+            <span class="calendar-day">11</span><span class="calendar-day has-event">12<i></i></span><span class="calendar-day">13</span><span class="calendar-day">14</span><span class="calendar-day">15</span><span class="calendar-day">16</span><span class="calendar-day">17</span>
+            <span class="calendar-day">18</span><span class="calendar-day today has-event">19<i></i></span><span class="calendar-day">20</span><span class="calendar-day has-event">21<i></i></span><span class="calendar-day">22</span><span class="calendar-day">23</span><span class="calendar-day">24</span>
+            <span class="calendar-day">25</span><span class="calendar-day">26</span><span class="calendar-day">27</span><span class="calendar-day has-event">28<i></i></span><span class="calendar-day">29</span><span class="calendar-day">30</span><span class="calendar-day">31</span>
+          </div>
+          <div class="calendar-legend"><span><i class="dot blue-dot"></i> Acara terjadwal</span><span><i class="dot gold-dot"></i> Hari ini</span></div>
+        </section>
+
+        <section class="admin-panel upcoming-panel">
+          <div class="panel-heading"><div><span class="panel-kicker">Agenda terdekat</span><h2>Jadwal minggu ini</h2></div><a class="text-link" href="events.html">Lihat semua →</a></div>
+          <div class="agenda-list">
+            <article class="agenda-item"><div class="agenda-date"><b>19</b><span>MEI</span></div><div class="agenda-copy"><strong>Office Hour: Karier</strong><span>09.00 - 10.30 · Online</span><small>32 pendaftar</small></div><span class="status status-live">Aktif</span></article>
+            <article class="agenda-item"><div class="agenda-date"><b>21</b><span>MEI</span></div><div class="agenda-copy"><strong>Alumni Networking Night</strong><span>18.30 - 21.00 · Jakarta</span><small>128 pendaftar</small></div><span class="status status-review">Review</span></article>
+            <article class="agenda-item"><div class="agenda-date"><b>23</b><span>MEI</span></div><div class="agenda-copy"><strong>Mentoring Agribisnis #04</strong><span>10.00 - 12.00 · Hybrid</span><small>24 pendaftar</small></div><span class="status status-draft">Draft</span></article>
+          </div>
+          <button class="btn btn-soft full-btn" data-modal="schedule-modal">＋ Jadwalkan agenda baru</button>
+        </section>
+      </div>
+
+      <section class="admin-panel schedule-table-panel">
+        <div class="panel-heading table-heading"><div><span class="panel-kicker">Manajemen agenda</span><h2>Semua jadwal</h2></div><div class="schedule-tools"><div class="admin-search">⌕ <input placeholder="Cari jadwal..."></div><div class="filterbar compact-filter"><button class="active" data-filter="all">Semua</button><button data-filter="active">Aktif</button><button data-filter="review">Review</button><button data-filter="draft">Draft</button></div></div></div>
+        <div class="schedule-table-wrap"><table class="schedule-table"><thead><tr><th>Agenda</th><th>Waktu</th><th>Format</th><th>Pendaftar</th><th>Status</th><th></th></tr></thead><tbody>
+          <tr data-category="active"><td><strong>Office Hour: Karier</strong><small>Karier · Dibuat 10 Mei 2026</small></td><td>19 Mei 2026<br><small>09.00 - 10.30</small></td><td>Online</td><td>32 / 50</td><td><span class="status status-live">Aktif</span></td><td><button class="table-more" data-toast="Menu jadwal dibuka">•••</button></td></tr>
+          <tr data-category="review"><td><strong>Alumni Networking Night Jakarta</strong><small>Networking · Dibuat 8 Mei 2026</small></td><td>21 Mei 2026<br><small>18.30 - 21.00</small></td><td>Offline</td><td>128 / 150</td><td><span class="status status-review">Review</span></td><td><button class="table-more" data-toast="Menu jadwal dibuka">•••</button></td></tr>
+          <tr data-category="draft"><td><strong>Mentoring Agribisnis #04</strong><small>Mentoring · Dibuat 18 Mei 2026</small></td><td>23 Mei 2026<br><small>10.00 - 12.00</small></td><td>Hybrid</td><td>24 / 40</td><td><span class="status status-draft">Draft</span></td><td><button class="table-more" data-toast="Menu jadwal dibuka">•••</button></td></tr>
+        </tbody></table></div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal-backdrop" id="schedule-modal"><div class="modal"><button class="modal-close" data-close-modal>×</button><span class="eyebrow"><i></i> Jadwal baru</span><h2 style="margin-top:14px">Buat agenda komunitas</h2><p style="margin-top:8px">Lengkapi detail dasar, lalu tim dapat meninjau sebelum dipublikasikan.</p><form class="admin-form" data-submit="Jadwal berhasil disimpan sebagai draft."><div class="form-grid"><div class="field"><label>Nama agenda</label><input required placeholder="Contoh: Forum alumni bulanan"></div><div class="field"><label>Kategori</label><select><option>Networking</option><option>Karier</option><option>Mentoring</option><option>Riset</option></select></div><div class="field"><label>Tanggal</label><input required type="date"></div><div class="field"><label>Waktu</label><input required type="time"></div><div class="field"><label>Format</label><select><option>Online</option><option>Offline</option><option>Hybrid</option></select></div><div class="field"><label>Kapasitas</label><input required type="number" min="1" placeholder="50"></div><div class="field full"><label>Catatan untuk peserta</label><textarea rows="3" placeholder="Tambahkan informasi singkat tentang agenda..."></textarea></div></div><div class="modal-actions"><button type="button" class="btn btn-outline" data-close-modal>Batal</button><button class="btn btn-primary">Simpan jadwal</button></div></form></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
